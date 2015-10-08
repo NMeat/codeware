@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS实现同步服务器时间、倒计时</title>
+ <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <span id="timebox">11:21:55</span>
+    <br/>
+    <span id="sysTimeBox">1天00时00分12秒</span>
+<script type="text/javascript">
+    $(function(){
+        var timeNow = $("#timebox").text(); //获取当标签里的时间
+        var timeArr = timeNow.split(":", 3);  //将获取的字符串分割成数组 
+            timeArr = [parseInt(timeArr[0]), parseInt(timeArr[1]), parseInt(timeArr[2])];//转成整型字符串
+        setInterval(function(){ //设置一个循环定时器 1秒更新一下时间
+            timeArr = changeTime(timeArr[0], timeArr[1], timeArr[2]);
+            showNewTime(timeArr[0], timeArr[1], timeArr[2]);
+        }, 1000);
+
+        //处理时间放回原处
+        function showNewTime(h, m, s){
+            var timeStr = ('0' + h.toString()).substr(-2) + ':'
+                          + ('0' + m.toString()).substr(-2) + ':'
+                          + ('0' + s.toString()).substr(-2);
+            $("#timebox").text(timeStr);
+        }
+        //计算时间 并返回
+        function changeTime(h, m, s){
+            if(++s == 60){
+                s = 0;
+            };
+            if(s == 0){
+                if(++m == 60){
+                    m = 0;
+                }
+            };
+            if (m == 0) {
+                if(++h == 24){
+                    h = 0;
+                }
+            };
+            return [h,m,s];
+        }
+    });
+
+    $(function(){
+
+        var tid = setInterval(function(){
+            var timeStr = $("#sysTimeBox").text();//取得当前时间
+            console.log(timeStr);
+                totalSec = getTotalSecond(timeStr) - 1;
+                if (totalSec >= 0) {
+                    $("#sysTimeBox").text(getNewSyTime(totalSec));
+                }else{
+                    clearInterval(tid);
+                }
+
+        },1000);
+
+        //根据剩余时间字符串计出总秒数
+        function getTotalSecond(timeStr){
+            var reg = /\d+/g,
+                timeArr = new Array();
+            while ((r = reg.exec(timeStr)) != null){  //配配字符串中所的数字
+                timeArr.push(parseInt(r));
+            }
+            var second = 0, i = 0;
+            if(timeArr.length == 4){
+                second = timeArr[i] * 24 * 3600;
+                i++;
+            }
+            second += timeArr[i] * 3600 + timeArr[++i] * 60 + timeArr[++i];
+            return second;
+        }
+
+        //根据剩余秒数生成时间格式
+        function getNewSyTime(totalSec){
+            var s = totalSec % 60;      //取秒数
+            totalSec = (totalSec - s)/60;    
+            var m = totalSec % 60;      //分钟数
+            totalSec = (totalSec - m)/60;
+            var h = totalSec % 24;      //小时数
+            var d = (totalSec - h)/24;  //天数
+            var timeStr = '';
+            if (d > 0) {
+                timeStr += d.toString() + "天";
+            };
+            timeStr += ("0" + h.toString()).substr(-2) + "小时"
+                    + ("0" + m.toString()).substr(-2)  + "分钟"
+                    + ("0" + s.toString()).substr(-2)  + "秒";           
+            return timeStr;
+        }
+    });
+</script>
+</body>
+</html>

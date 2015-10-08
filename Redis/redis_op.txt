@@ -1,0 +1,5 @@
+﻿登录    		 : redis-cli -h 主机IP
+测试连接是否存活         : ping
+返回当前数据库中key的数目：dbsize
+选择数据库,Redis数据库编号从0-15 : select 0-15
+获取服务器的信息和统计   :info
