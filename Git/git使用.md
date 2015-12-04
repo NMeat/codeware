@@ -19,7 +19,7 @@
 
 按3个回车，密码为空这里一般不使用密钥
 最后得到了两个文件：`id_rsa`和`id_rsa.pub`
-
+把`id_rsa.pub`里字符序列拷贝到需要的地方
 注意：密匙生成就不要改了，如果已经生成到`~/.ssh`文件夹下去找
 
 **git变更项目地址:**
@@ -135,6 +135,6 @@ git branch命令的-r选项，可以用来查看远程分支，-a选项查看所
 
 **git add -A / . / -u的区别**
 
-	`git add -A    stages All
+	 git add -A    stages All
 	 git add .     stages new and modified, without deleted
-	 git add -u    stages modified and deleted, without new`
+	 git add -u    stages modified and deleted, without new
