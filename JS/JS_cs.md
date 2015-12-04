@@ -138,3 +138,10 @@ JS数据类型:
 		 这个方法使用很简单：
 		 var o1 = Object.create({x: 1, y: 2});    //对象o1继承了属性x和y
 		 var o2 = Object.create(null);    		  //对象o2没有原型
+**Json字符串和Json对象**
+
+    var JsonStr = '{"name":'superMan', "age":25}';//Json字符串
+    var JosnObj = {		//Json对象
+    		name:'superMan',
+    		age:25
+    	};
