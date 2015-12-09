@@ -145,3 +145,7 @@ JS数据类型:
     		name:'superMan',
     		age:25
     	};
+    将Json字符串转化成Json对象有两种方法:
+    var JsonStrToObj = eval('(' + JsonStr + ')');
+    或则
+    var JsonStrToObj = JSON.parse(JsonStr);
