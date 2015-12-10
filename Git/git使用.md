@@ -145,10 +145,16 @@ git branch命令的-r选项，可以用来查看远程分支，-a选项查看所
 	注解：git tag 是打标签的命令，-a 是添加标签，其后要跟标签名，-m 及后面的字符串是对该
 	标签的注释
 	
-	提交标签
-	git push origin -tags
+	提交标签(所有标签)
+	git push origin --tags
 	注解：就像git push origin master 把本地修改提交到远程仓库一样，-tags可以把本地的打的
 	标签全部提交到远程仓库。
+	
+	提交某个标签
+	git push origin <tagname>
+
+	获取远程tag
+	git fetch origin tag <tagname>
 	
 	删除标签
 	git tag -d v1.01
@@ -159,3 +165,9 @@ git branch命令的-r选项，可以用来查看远程分支，-a选项查看所
 
 	查看标签
 	git tag或则git tag -l
+	
+	切换到tag对应的版本
+	git checkout tag_name
+	
+	从tag创建一个分支
+	git checkout -b branch_name tag_name
