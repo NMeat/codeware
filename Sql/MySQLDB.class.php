@@ -49,7 +49,7 @@ class MySQLDB {
 	//连接数据库
 	private function connect() {
         if(!$link = mysqli_connect("$this->host:$this->port", $this->user, $this->pass)) {
-			echo '连接失败，请检查mysql服务器，与用户信息';
+			echo '连接失败，请检查mysql服务器与用户信息';
 			die;
         }else {
 			$this->link = $link;//连接成功
