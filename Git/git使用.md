@@ -138,3 +138,24 @@ git branch命令的-r选项，可以用来查看远程分支，-a选项查看所
 	 git add -A    stages All
 	 git add .     stages new and modified, without deleted
 	 git add -u    stages modified and deleted, without new
+**git tag用法**
+	
+	打标签
+	git tag -a v1.01 -m "Relase version 1.01"
+	注解：git tag 是打标签的命令，-a 是添加标签，其后要跟标签名，-m 及后面的字符串是对该
+	标签的注释
+	
+	提交标签
+	git push origin -tags
+	注解：就像git push origin master 把本地修改提交到远程仓库一样，-tags可以把本地的打的
+	标签全部提交到远程仓库。
+	
+	删除标签
+	git tag -d v1.01
+	注解：-d 表示删除，后面跟要删除的tag名字
+
+	删除远程标签
+	git push origin :refs/tags/v1.01
+
+	查看标签
+	git tag或则git tag -l
