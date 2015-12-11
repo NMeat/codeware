@@ -3,7 +3,7 @@
 		    <a href="#" onclick="return false;">link1</a>
 		    <a href="javascript:void(0);">link2</a>
 
-JS中函数的声明方法
+**JS中函数的声明方法**
 
 		    JS中函数是引用数据类型
 		    //普通函数:
@@ -104,7 +104,7 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
 			return '您确定要离开吗?';
 	};
 
-JS数据类型:
+**JS数据类型**
 
 	5种原始基本数据类型:数字，字符串，布尔值，null，undefined
 	1种复合数据类型:对象
