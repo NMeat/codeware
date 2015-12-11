@@ -176,11 +176,11 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
 	  }
 	
 	  function Cat(){
-	       Animal.call(this,'cat','50CM');
-	       //Animal.apply(this,['cat','50CM']);
+	       Animal.call(this,'cat','50CM'); 		//call方法
+	       //Animal.apply(this,['cat','50CM']); //apply方法
 	       this.say = function(){
 	           console.log("I am " + this.name+",my weight is " + this.weight);
 	       }
 	  }
 	  var cat = new Cat();
-	  cat.say();	//输出结果:I am cat,my weight is 50CM
+	  cat.say();					//输出结果:I am cat,my weight is 50CM
