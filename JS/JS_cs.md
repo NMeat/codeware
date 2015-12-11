@@ -149,3 +149,38 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
     var JsonStrToObj = eval('(' + JsonStr + ')');
     或则
     var JsonStrToObj = JSON.parse(JsonStr);
+
+**JS的call与apply**
+	
+	call()代码事例:
+	function f(){	//定义一个函数
+		console.log(this.name);
+	}
+	
+	var obj = {};		//定义一个空对象
+	obj.name = "obj";	//给对象增加一个属性
+	f.call(obj); 		//输出结果:obj
+	注解:call方法的作用就体现在这里，f.call(obj) 翻译成白话文就是：把f的定义赋给了obj,并
+	调用f(),相当于obj.f() ，此时f中的this指的就是obj, this.name==obj.name,所以结果就是
+	obj
+
+	call还有个兄弟apply, apply 和 call 唯一的区别是传递参数形式不同，call(obj,args..)
+    可以传递一个参数列表， apply(obj,args[]) 只能传递一个Array参数
+	
+	当然，这兄弟俩还有其他作用，那就是JS中的继承。 大家知道，JS中没有诸如Java、C#等高级语言中的
+	extend 关键字，因此，JS中没有继承的概念，如果一定要继承的话，call和apply可以实现这个功能，看代
+	码：
+	function Animal(name,weight){
+       this.name = name;
+       this.weight = weight;
+	  }
+	
+	  function Cat(){
+	       Animal.call(this,'cat','50CM');
+	       //Animal.apply(this,['cat','50CM']);
+	       this.say = function(){
+	           console.log("I am " + this.name+",my weight is " + this.weight);
+	       }
+	  }
+	  var cat = new Cat();
+	  cat.say();	//输出结果:I am cat,my weight is 50CM
