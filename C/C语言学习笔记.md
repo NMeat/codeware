@@ -32,8 +32,66 @@ C语言通过由：  `预处理``编译` `汇编` `链接` 四个步骤生成可
     struct weapon *wArr;
     wArr = weaponArr;
     printf("%s; %s\n", wArr->name, (++wArr)->name);
+    
+	静态链表练习:
+	 //静态链表
+    struct weapon{
+        int atk;
+        int price;
+        struct weapon *next;
+    };
+    
+    struct weapon a,b,c,*head;
+    a.atk   = 100;
+    a.price = 100;
+    
+    b.atk   = 200;
+    b.price = 200;
+    
+    c.atk   = 300;
+    c.price = 300;
+    
+    head = &a;
+    a.next = &b;
+    b.next = &c;
+    c.next = NULL;
+    
+    struct weapon *p = head;
+    while (p != NULL) {
+        printf("weapon.atk == %d\n", p->atk);
+        p = p->next;
+    }
+ 	动态链表练习:
+ 	//动态链表
+	 	struct weapon{
+	    int atk;
+	    int price;
+	    struct weapon *next;
+	};
 
-
+	struct weapon * create(){
+	    struct weapon *head;
+	    struct weapon *p1,*p2;
+	    
+	    int n = 0;
+	    p1 = p2 = (struct weapon *)malloc(sizeof(struct weapon));
+	    scanf("%d,%d", &p1->atk, &p1->price);
+	    head = NULL;
+	    while (p1->atk != 0) {
+	        n++;
+	        if (n == 1) {
+	            head = p1;
+	        }else{
+	            p2->next = p1;
+	        }
+	        p2 = p1;
+	        p1 = (struct weapon *)malloc(sizeof(struct weapon));
+	        scanf("%d,%d", &p1->atk, &p1->price);
+	    }
+	    p2->next = NULL;
+	    return head;
+	}
+	
 **指针函数 和 函数指针 的区别**
 
 `指针函数` 一个函数不仅可以带回一个整型数据的值，字符类型值和实型类型的值，还可以带回指针类型的数据，使其指向某个地址单元。是指带指针的函数，即本质是一个函数。函数返回类型是某一类型的指针。返回指针的函数，一般定义格式为：
