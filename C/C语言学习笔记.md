@@ -1,6 +1,38 @@
 ## C语言学习笔记 ##
 
 C语言通过由：  `预处理``编译` `汇编` `链接` 四个步骤生成可执行文件
+             
+        .c文件->.i文件->.s文件->.o文件->可执行文件
+        预处理：预处理阶段展开头文件和宏替换
+        生成预处理文件命令如右：gcc -o filename.i filename.c -E
+
+
+**结构体类型**
+
+	代码示例:
+	struct weapon{  //定义一个结构体
+        char name[20];
+        int atk;
+        int price;
+    };
+    
+    //定义一个该类型的结构体变量
+    struct weapon weapon1 = {"weapon1", 200,200};
+    printf("%s\n", weapon1.name);
+    
+    //结构体数组
+    struct weapon weaponArr[2] = {{"weaponElement1",100,100},{"weaponElement2",200,200}};
+    printf("%s,%s\n",weaponArr[0].name, weaponArr[1].name);
+    
+    //结构体指针
+    struct weapon *w;
+    w = &weapon1;
+    printf("%s; %s\n", w->name, (*w).name);
+    
+    struct weapon *wArr;
+    wArr = weaponArr;
+    printf("%s; %s\n", wArr->name, (++wArr)->name);
+
 
 **指针函数 和 函数指针 的区别**
 
