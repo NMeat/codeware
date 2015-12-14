@@ -40,6 +40,7 @@
 
 
 **JS面试题**
+
 	//第一题
     var sum = function () {
     	return [].slice.call(arguments).map(function(x){
