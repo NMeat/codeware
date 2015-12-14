@@ -39,8 +39,8 @@
 		    }(3));
 
 
-**阿里的一道面试题**
-
+**JS面试题**
+	//第一题
     var sum = function () {
     	return [].slice.call(arguments).map(function(x){
     				return isNaN(Number(x)) ? 0 : Number(x);
@@ -48,11 +48,22 @@
     				return a + b;
     			});
   		  };
-    console.log(sum(444,111));							// = 555
-    console.log(sum(5, 'abc', -5));  					 // = 0
+    console.log(sum(444,111));							  // = 555
+    console.log(sum(5, 'abc', -5));  					  // = 0
     console.log(sum(1, true, 'a', 'D', 1, 'F', 1, 'w'));  // = 4
-
-
+	
+	//第二题
+	function multi(n){
+		var fn = function(x) {
+			return multi(n * x);
+		};
+		fn.valueOf = function() {
+			return n;
+		};
+		return fn;
+	}
+	
+	multi(1)(2)(3)(4).valueOf() == 24; // true
 
 **setTimeout**
 
