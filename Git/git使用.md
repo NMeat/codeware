@@ -24,17 +24,12 @@
 
 验证通信: ssh -T git@github.com
 
-**git变更项目地址:**
+**git变更项目地址**
 
     git remote set-url origin git@192.168.6.70:res_dev_group/test.git
     git remote -v
 
-**查看某个文件的修改历史:**
-
-    git log --pretty=oneline 文件名 # 显示修改历史
-    git show 356f6def9d3fb7f3b9032ff5aa4b9110d4cca87e # 查看更改
-
-**git add文件取消:**
+**git add文件取消**
 
 在git的一般使用中，如果发现错误的将不想提交的文件add进入index之后，想回退取消，则可以使用命令：
 
@@ -42,21 +37,39 @@
 
 同时git add完毕之后，git也会做相应的提示
 
-**git删除文件：**
-
-    删除文件跟踪并且删除文件系统中的文件file1       git rm file1
-    提交刚才的删除动作，之后git不再管理该文件       git commit
-
-    删除文件跟踪但不删除文件系统中的文件file1       git rm --cached file1
+**git删除文件**
+	
+    //不跟踪且文件也被删除
+    删除文件跟踪并且删除文件系统中的文件file1   git rm file1
+    提交刚才的删除动作，之后git不再管理该文件   git commit
+    	
+    //不跟踪但文件依然保存
+    删除文件跟踪但不删除文件系统中的文件file1   git rm --cached file1
     提交刚才的删除动作，之后git不再管理该文件。但是文件系统中还是有file1   git commit
 
 **版本回退**
 
-版本回退用于线上系统出现问题后恢复旧版本的操
+先用git log 或则 git log --pretty=oneline查出commit id号
 
-回退到的版本	`git reset --hard 248cba8e77231601d1189e3576dc096c8986ae51`
+    	$ git log --pretty=oneline
+    	3628164fb26d48395383f8f31179f24e0882e1e0 append GPL
+    	ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed
+    	cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file
+回退到当前版本的上一个版本:
 
-回退的是所有文件，如果后悔回退可以git pull就可以了
+		`git reset --hard HEAD^`
+
+回退到的指定的版本:	
+		
+		`git reset --hard 248cba8e77231601d1189e3576dc096c8986ae51`
+
+总结:
+
+    HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+    
+    穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+    
+    要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
 **历史版本对比**
 
