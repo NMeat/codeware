@@ -177,7 +177,14 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
 	obj
 
 	call还有个兄弟apply, apply 和 call 唯一的区别是传递参数形式不同，call(obj,args..)
-    可以传递一个参数列表， apply(obj,args[]) 只能传递一个Array参数
+    可以传递一个参数列表， apply(obj,args[]) 只能传递一个Array参数。
+
+	var fn = function(a,b){
+	    console.log(this === window); 第一个参数传入null，函数体内默认会指向与宿主对象，即window对象
+	};
+	
+	fn.apply(null, [1,2]);//true
+	fn.call(null, 1, 2);  //true
 	
 	当然，这兄弟俩还有其他作用，那就是JS中的继承。 大家知道，JS中没有诸如Java、C#等高级语言中的
 	extend 关键字，因此，JS中没有继承的概念，如果一定要继承的话，call和apply可以实现这个功能，看代
