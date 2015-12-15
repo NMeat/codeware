@@ -199,10 +199,9 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
 
 **JS闭包和自执行函数**
 
-	闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。是指
-	有权访问另一个函数作用域中的变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函
-	数，通过另一个函数访问这个函数的局部变量。闭包的缺点就是常驻内存，会增大内存使用量，使用不当
-	很容易造成内存泄露。
+	闭包（closure）是Javascript语言的一个难点，也是它的特色，很多高级应用都要依靠闭包实现。是指有权访问另一个函数作用域中的变量的函数，创建闭包的最常见的方式就是在一个函数内
+	创建另一个函数，通过另一个函数访问这个函数的局部变量。闭包的缺点就是常驻内存，会增大内
+	存使用量，使用不当很容易造成内存泄露。
 	闭包有三个特性：
 		1.函数嵌套函数
 		2.函数内部可以引用外部的参数和变量
@@ -220,6 +219,34 @@ timeout时间一到，指定执行函数调用的e就是每次传入的参数i
 		c();   // 2
 		c();   // 3
 		c();   // 4
+
+	用闭包模拟私有方法:
+	var person = (function(){
+		var _name = "编程的人";
+		var age = 20;
+		return {
+			add:function(){
+				age++;
+			},
+			jian:function(){
+				age--;
+			},
+			getAge:function() {
+				return age;
+			},
+			getName:function(){
+				return _name;
+			},
+			setName: function (name) {
+				_name = name;                
+			}
+		}
+	})();
+	person.add();
+	var age = person.getAge();
+	console.log(age)
+	person.setName("编程的人公众号:bianchengderen")
+	console.log(person.getName())
 
 	自执行函数:
 	
