@@ -29,15 +29,19 @@
     git remote set-url origin git@192.168.6.70:res_dev_group/test.git
     git remote -v
 
-**git撤消修改**
+**git add文件取消**
 
     git checkout -- readme.txt 把readme.txt文件在工作区的修改全部撤销，这里有两种情况:
 
 	一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
     一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
     总之，就是让这个文件回到最近一次git commit或git add时的状态。
+	----------------------------------------------------------------------------
+    git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区
 
-	git reset HEAD filename			可以把暂存区的修改撤销掉（unstage），重新放回工作区
+    git reset HEAD <file>...
+
+同时git add完毕之后，git也会做相应的提示
 
 **git删除文件**
 	
@@ -59,11 +63,7 @@
     	cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file
 回退到当前版本的上一个版本:
 
-		git reset [--soft | --mixed | --hard commitid
-		--mixed:会保留源码,只是将git commit和index(暂存区)信息回退到了某个版本(默认是mixed)
-		--soft:保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.
-		--hard:源码也会回退到某个版本,commit和index 都回回退到某个版本
-		git reset --hard HEAD^
+		`git reset --hard HEAD^`
 
 回退到的指定的版本:	
 		
