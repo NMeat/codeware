@@ -57,13 +57,15 @@
 
 先用git log 或则 git log --pretty=oneline查出commit id号
 
-    	$ git log --pretty=oneline
-    	3628164fb26d48395383f8f31179f24e0882e1e0 append GPL
-    	ea34578d5496d7dd233c827ed32a8cd576c5ee85 add distributed
-    	cb926e7ea50ad11b8f9e909c05226233bf755030 wrote a readme file
+    	git log --pretty=oneline
+
 回退到当前版本的上一个版本:
 
-		`git reset --hard HEAD^`
+		git reset [--soft | --mixed | --hard commitid
+		--mixed:会保留源码,只是将git commit和index(暂存区)信息回退到了某个版本(默认是mixed)
+		--soft:保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.
+		--hard:源码也会回退到某个版本,commit和index 都回回退到某个版本
+		git reset --hard HEAD^
 
 回退到的指定的版本:	
 		
