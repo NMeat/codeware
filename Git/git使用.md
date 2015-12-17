@@ -61,7 +61,8 @@
 
 回退到当前版本的上一个版本:
 
-		git reset [--soft | --mixed | --hard commitid
+git reset [--soft | --mixed | --hard commitid
+
 		--mixed:会保留源码,只是将git commit和index(暂存区)信息回退到了某个版本(默认是mixed)
 		--soft:保留源码,只回退到commit 信息到某个版本.不涉及index的回退,如果还需要提交,直接commit即可.
 		--hard:源码也会回退到某个版本,commit和index 都回回退到某个版本
@@ -78,6 +79,24 @@
     穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
     
     要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+git revert:用一个新提交来消除一个历史提交所做的任何修改
+	
+	git revert commitid
+
+区别:
+
+	git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit
+	第一:
+	如果你已经push到线上代码库, reset 删除指定commit以后,你git push可能导致一大堆
+	冲突.但是revert 并不会.
+	
+	第二:
+	如果在日后现有分支和历史分支需要合并的时候,reset 恢复部分的代码依然会出现在历史分支里.但是
+	revert 方法提交的commit 并不会出现在历史分支里.
+	
+	第三:
+	reset 是在正常的commit历史中,删除了指定的commit,这时 HEAD 是向后移动了,而 revert 是在正常
+	的commit历史中再commit一次,只不过是反向提交,他的 HEAD 是一直向前的.
 
 **历史版本对比**
 
