@@ -1,4 +1,4 @@
-**创建和使用git ssh key**
+**创建和使用ssh key**
 
 首先设置git的user name和email：
 
@@ -24,26 +24,23 @@
 
 验证通信: ssh -T git@github.com
 
-**git变更项目地址**
+**变更项目地址**
 
     git remote set-url origin git@192.168.6.70:res_dev_group/test.git
     git remote -v
 
-**git add文件取消**
+**撤消文件修改**
 
     git checkout -- readme.txt 把readme.txt文件在工作区的修改全部撤销，这里有两种情况:
 
-	一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
-    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+	一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态。最近的一次git commit时状态
+    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。最近的一次git add时的状态
+
     总之，就是让这个文件回到最近一次git commit或git add时的状态。
-	----------------------------------------------------------------------------
-    git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区
 
-    git reset HEAD <file>...
+    同时git add完毕之后，git也会做相应的提示
 
-同时git add完毕之后，git也会做相应的提示
-
-**git删除文件**
+**删除文件**
 	
     //不跟踪且文件也被删除
     删除文件跟踪并且删除文件系统中的文件file1   git rm file1
