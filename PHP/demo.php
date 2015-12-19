@@ -75,11 +75,10 @@ function my_scandir($dir){
         return $files;
     }
 }
-
 //$dir = "/home/lzf/github/alpha/java";
 //print_r(my_scandir($dir));
 
-/*
+/**
  * 判断一个字符串是否是合法的日期格式:2015-04-04 12:34:54
  *
  *@param  $timeStr  string  时间字符串
@@ -95,11 +94,7 @@ function checkDateTime($timeStr){
 //$timeStr = "2015-04-09 13:34:21";
 //echo checkDateTime($timeStr);
 
-/**
- *返回上个月的最后一天
- *@param  $date  string  给定的日期
- * 
- */
+//查找给点日期的当月的最后一天
 function getLastMonthLastDay($date){
     if($date != ""){
         $time = strtotime($date);
@@ -203,6 +198,7 @@ function getImage($url, $filename='', $dirName, $fileType, $type=0){
 }
 echo getImage("http://www.baidu.com/img/bdlogo.png", "test", "/home/local/lzf", array("png"));
 
+
 //对二维数组按照某个键值进行排序
 function testSort($arr, $str, $order = 0){
     $tmpArr = array();
@@ -217,26 +213,14 @@ function testSort($arr, $str, $order = 0){
     }
     return $tmpArr = array_values($tmpArr);
 }
-
 $arr = array(
     array("name"=>"lzf1", "score"=>78),
     array("name"=>"lzf2", "score"=>58),
     array("name"=>"lzf3", "score"=>98),
     array("name"=>"lzf4", "score"=>28)
 );
-
 //$arrT = testSort($arr, "score", 1);
 //var_dump($arrT);
-
-//在一个数组中查找指定的值
-function seqSearch($arr, $target){
-    for($i = 0, $length = count($arr); $i < $length; $i++){
-        if($arr[$i] == $target){
-            break;//找到就跳出遍历
-        }
-    }
-    return $i < $length ? $i : -1;
-}
 
 //二分查找法
 $arr = array(4,6,7,9,3,2);
@@ -261,7 +245,6 @@ var_dump(binSearch($arr,0,5,2));
  *@author  liuzhifeng
  *@date    2014-12-29
  */
-
 //预制一个数组
 $rows = array(
     array('id' => 1,'name' => 'dev',   'parent_id' => 0),
@@ -272,7 +255,6 @@ $rows = array(
     array('id' => 6,'name' => 'pdo-mysql','parent_id' => 5),
     array('id' => 7,'name' => 'java',  'parent_id' => 1)
 );
-
 
 /*
  *@param  $arr       -array,    要处理的数组 
@@ -292,7 +274,6 @@ function getTree($arr,$pare_id = 0, $deep = 0){
     } 
     return $tree;                                    //返回处理后的数组树
 }
-
 $tree = getTree($rows);
 var_dump($tree);
 
