@@ -4,7 +4,6 @@
  * @author 27_Man
  */
 class Peak_Auth {
-
     /**
      * 权限类计数器
      * 作用在于生成权限值
@@ -12,28 +11,24 @@ class Peak_Auth {
      * @var int
      */
     protected static $authCount = 0;
-
     /**
      * 权限名称
      *
      * @var string
      */
     protected $authName;
-
     /**
      * 权限详细信息
      *
      * @var string
      */
     protected $authMessage;
-
     /**
      * 权限值
      *
      * @var int 2的N次方
      */
     protected $authValue;
-
     /**
      * 构造函数
      * 初始化权限名称、权限详细信息以及权限值

@@ -105,3 +105,107 @@ class subClassC implements iC{
 
 $sub3 = new subClassC('Lucy', 22);
 echo $sub3->getClassName();
+
+/*
+    php 关键字 final
+    final用来修修饰 类和方法
+    final class className  不能被继承 能实例化
+    final methodName       该方法不能被子类重写
+*/
+
+//定义一个final类
+final class classA{
+    protected static $age;
+    public $name;
+
+    public function __construct($age, $name){
+        $this->name = $name;
+        $this->age  = $age;
+    }
+
+    public final function getName(){
+        return $this->name;
+    }
+}
+
+$sub1 = new classA(22, 'Alan');
+echo $sub1->getName(); 
+
+class Animal{
+    private $_create;
+    private $logfile_handle;
+    //构造方法 实例化对象时调用
+    public function __construct(){
+        $this->_create = time();
+        $this->logfile_handle = fopen("/home/lzf/web/demo.php", "w");
+    }
+    //析构方法 当对象销毁时调用此方法
+    public function __destruct(){
+        fclose($this->logfile_handle);
+    }
+    //__get魔术方法 访问不存在的属性时调用
+    public function __get($field){
+        if($field == "name"){
+            return '我是__get魔术方法';
+        }
+    }
+    //__set方法是用在给不存在的属性赋值时调用
+    public function __set($field,$value){
+        if($field == "name"){
+            return $value;
+        }
+    }
+    //调用对象不存在的方法时调用此函数
+    public function __call($method, $args){
+        echo "unknow method :" . $method;
+        echo "<br>";
+        print_r($args);
+        return false;
+    }
+    //对象序列化时调用此函数
+    public function __sleep(){
+        return array("_create");
+    }
+    //当对象反序列化时调用
+    public function __wakeup(){
+        return $this->_create;
+    }
+    //对象被克隆时调用
+    public function __clone(){
+        echo "我被克隆了";
+    }
+    //当打印对象作为字符串输出时调用此方法
+    public function __toString(){
+        return "我被打印了";
+    } 
+}
+
+$penguin = new Animal(); 
+echo $penguin;
+
+
+/**
+ *@param    $host   String-  memcache服务器的地址 　　　默认值是127.0.0.1 
+ *@param    $port   int   -  memcache服务器的监听端口　 默认值是11211
+ *
+ *@return   String        -  返回token值
+ */
+function getAccessToken($host = "127.0.0.1", $port = 11211){
+    $memObj = new Memcache;
+    $memObj->connect($host, $port);
+    $access_token   = $memObj->get("access_token");//获取token值
+    $token_time     = $memObj->get("tokenTime"); //获取token值的生命期
+    if($access_token && $token_time) {  //token值和token值的生命期　都没有过期
+        $timeNow    = time();
+        $remainTime = $token_time - $timeNow;              
+        if($remainTime < 300) { //如果离token的到期时间不足300秒　则更新token值
+            $access_token = "110";
+        }
+    }else{  //两者任一不存在 则重新token
+        $access_token = "110";
+    }
+    $memObj->close();//关闭联接资源
+    return $access_token;
+}
+$value = getAccessToken();
+var_dump($value);

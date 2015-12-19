@@ -22,12 +22,7 @@
  * 当然如果存储格式为bitint或varchar等可以存储更长数字的格式，那么权限数量可以继续增加
  */
 $permission  = 15;  //1+2+4+8 拥有全部权限 表示这个人拥有的所有权限
-$permissions = array(
-    8 => '增加',
-    4 => '删除',
-    2 => '修改',
-    1 => '查询',
-);
+$permissions = array(8 => '增加',4 => '删除',2 => '修改',1 => '查询');
 foreach ($permissions as $key => $val) {
     if($key & $permission) {    //判断8 4 2 1是否在 15以内
         echo '我有' . $val . '的权力<br>';
