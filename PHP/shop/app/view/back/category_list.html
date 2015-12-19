@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 商品分类 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./app/view/back/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="./app/view/back/styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="index.php?p=back&c=Category&a=addList">添加分类</a></span>
+<span class="action-span1"><a href="index.php?act=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品分类</span>
+<div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+<div class="list-div" id="listDiv">
+
+<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+		<tr>
+			<th>分类名称</th>
+			<th>商品数量</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+	<?php foreach ($list as $row) :?>
+		<tr align="center" class="0" id="0_6">
+		   <td align="left" class="first-cell" >
+		   <?php echo str_repeat('&nbsp;&nbsp;&nbsp',$row['deep']),$row['cate_name'];?>
+		   </td>
+		   <td>数量</td>
+		   <td align="right"><?php echo $row['sort_order'];?></td>
+		   <td width="24%" align="center">
+			  <a href="index.php?p=back&c=Category&a=deleteById&id=<?php echo $row['cate_id'];?>" onclick="return confirm('确定要删除<?php echo $row['cate_name'];?>吗？');" >删除</a> |
+			  <a href="index.php?p=back&c=Category&a=edit&id=<?php echo $row['cate_id'];?>">编辑</a>
+		   </td>
+		</tr>
+	<?php endForeach;?>
+  </table>
+</div>
+</form>
+
+<div id="footer">
+&copy;ITCAST-PHP-PHP1016
+</div>
+</body>
+</html>

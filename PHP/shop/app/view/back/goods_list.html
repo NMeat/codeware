@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 商品分类 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./app/view/back/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="./app/view/back/styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="index.php?p=back&c=Goods&a=add">添加商品</a></span>
+<span class="action-span1"><a href="index.php?act=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品列表 </span>
+<div style="clear:both"></div>
+</h1>
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+<div class="list-div" id="listDiv">
+
+<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+  <tr>
+    <th>编号</th>
+    <th>名称</th>
+    <th>货号</th>
+    <th>价格</th>
+	<th>上架</th>
+    <th>精品</th>
+    <th>新品</th>
+    <th>热销</th>
+	<th>库存</th>
+    <th>操作</th>
+  </tr>
+     <?php foreach($list as $row) :?>
+    <tr align="center" class="0" id="0_6">
+	<td align="left" class="first-cell" >
+	 <?php echo $row['goods_id'];?>
+	</td>
+    <td align="left">
+     <?php echo $row['goods_name'];?>
+	</td>
+	<td align="left">
+     <?php echo $row['goods_sn'];?>
+	</td>
+	<td align="right">
+     <?php echo $row['shop_price'];?>
+	</td>
+
+	<td align="center">
+       <img src="./app/view/back/images/<?php echo $row['is_on_sale'] ? 'yes' : 'no';?>.gif" />
+	</td>
+
+	<td align="center">
+       <img src="./app/view/back/images/<?php echo $row['goods_status']&1 ? 'yes' : 'no';?>.gif" />
+	</td>
+	<td align="center">
+	   <img src="./app/view/back/images/<?php echo $row['goods_status']&2 ? 'yes' : 'no';?>.gif" />
+	</td>
+	<td align="center">
+	   <img src="./app/view/back/images/<?php echo $row['goods_status']&4 ? 'yes' : 'no';?>.gif" />
+	</td>
+
+    <td align="right">
+      <?php echo $row['goods_stock'];?>
+	</td>
+
+    <td width="24%" align="center">
+      <a href="index.php?p=back&c=Goods&a=deleteGoods&goodsID=<?php echo $row['goods_id'];?>" onclick="return confirm('是否删除&nbsp<?php echo $row['goods_name'];?>&nbsp？')">删除</a> |
+      <a href="#">编辑</a>
+    </td>
+  </tr>
+  <?php endForeach;?>
+  </table>
+
+ <!-- 翻页的table -->
+	<table cellspacing="0" id="page-table">
+	  <tr>
+		<td nowrap="true" align="center" style="background-color: rgb(255, 255, 255);">
+		  <div id="turn-page">
+		       每页显示
+			  <input type="text" value="<?php echo $pageSize;?>" onblur="window.location.href='index.php?p=back&c=Goods&a=list&pageSize='+this.value" size="3">条
+			  
+			  <a href="index.php?p=back&c=Goods&a=list&pageNO=1&pageSize=<?php echo $pageSize;?>">第一页</a>
+
+			  <!--处理上一页和下页一页的两种方法 开始-->
+			  <?php if($pageNO == 1):?>
+			  上一页
+			  <?php else:?>
+			  <a href="index.php?p=back&c=Goods&a=list&pageNO=<?php echo $pageNO-1;?>&pageSize=<?php echo $pageSize;?>">上一页</a>
+			  <?php endIf;?>
+			  <?php if($pageNO == $totalPage):?>
+			  <a href="index.php?p=back&c=Goods&a=list&pageNO=1&pageSize=<?php echo $pageSize;?>">下一页</a>
+			  <?php else:?>
+			  <a href="index.php?p=back&c=Goods&a=list&pageNO=<?php echo $pageNO+1;?>&pageSize=<?php echo $pageSize;?>">下一页</a>
+			  <?php endIf;?>
+			  <!--处理上一页和下页一页的两种方法 结束-->
+
+			  <a href="index.php?p=back&c=Goods&a=list&pageNO=<?php echo $totalPage;?>&pageSize=<?php echo $pageSize;?>">最末页</a>
+
+			  <!--跳到XXX页 开始-->
+			  跳到
+			  <select onchange="window.location.href='index.php?p=back&c=Goods&a=list&pageSize=<?php echo $pageSize;?>&pageNO='+this.value">
+			      <?php for($i=1;$i<=$totalPage;++$i):?>
+			    <option value="<?php echo $i;?>" <?php echo $pageNO==$i?'selected':'';?>>
+				  <?php echo $i;?>
+				</option>
+				  <?php endFor;?>
+			  </select>页
+			  <!--跳到XXX页 结束-->
+			  <br/>
+			  <?php echo $page_html;?>
+		  </div>
+		</td>
+	  </tr>
+	</table>
+<!--翻页table结束-->
+</div>
+</form>
+
+<div id="footer">
+&copy;ITCAST-PHP-PHP1016
+</div>
+</body>
+</html>

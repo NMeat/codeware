@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 添加分类 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./app/view/back/styles/general.css" rel="stylesheet" type="text/css" />
+<link href="./app/view/back/styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="index.php?p=back&c=Category&a=list">商品分类</a></span>
+<span class="action-span1"><a href="index.php?act=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加分类 </span>
+<div style="clear:both"></div>
+</h1>
+<!-- start add new category form -->
+<div class="main-div">
+  <form action="index.php?p=back&c=Category&a=update" method="post">
+  <table width="100%" id="general-table">
+      <tr>
+        <td class="label">分类名称:</td>
+        <td>
+          <input type='text' name='cate_name' maxlength="20" value="<?php echo $curr_list['cate_name'];?>" size='27' /> <font color="red">*</font>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">上级分类:</td>
+        <td>
+          <select name="parent_id">
+               <option value="0">顶级分类</option>
+               <?php foreach ($cate_list as $row) : ?>
+			     <option value="<?php echo $row['cate_id'];?>" 
+				 <?php echo $curr_list['parent_id'] == $row['cate_id']?"selected":"";?>
+				 >
+		           <?php echo str_repeat('&nbsp;&nbsp;&nbsp;',$row['deep']),$row['cate_name'];?>
+			     </option>
+			   <?php endForeach;?>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">排序:</td>
+        <td>
+          <input type="text" name='sort_order'  value="<?php echo $curr_list['sort_order'];?>" size="15" />
+        </td>
+      </tr>
+      </table>
+	  <input name="cate_id" type='hidden' value="<?php echo $curr_list['cate_id'];?>"/>
+      <div class="button-div">
+        <input type="submit" value=" 确定 " />
+        <input type="reset" value=" 重置 " />
+      </div>
+  </form>
+</div>
+
+<div id="footer">
+&copy;ITCAST-PHP-PHP1016
+</div>
+
+</body>
+</html>
