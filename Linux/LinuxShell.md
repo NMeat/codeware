@@ -38,7 +38,15 @@
 
     uname -m 				    #显示机器的处理器架构
     uname -r 				    #显示正在使用的内核版本
+	
+	tar.gz格式
+	tar -zcvf [目标文件名].tar.gz [原文件名/目录名]  	#打包并压缩
+	tar -zxvf [原文件名].tar.gz						#解压并解包
     
+	tar.bz2格式
+	tar -jcvf [目标文件名].tar.bz2 [原文件名/目录名]	#打包并压缩
+	tar -jxvf [原文件名].tar.bz2						#解压并解包
+
     date						#显示系统日期
     cal 2007 					#显示2007年的日历表
     which ls					#显示命今ls的绝对路径
