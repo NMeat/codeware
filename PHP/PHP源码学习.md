@@ -20,7 +20,7 @@
 	    double dval;       // float
 	    struct {
 	        char *val;
-	        int len;
+	        int   len;
 	    } str;                  //String
 	    HashTable *ht;   	    //Array
 	    zend_object_value obj; 	//Object
