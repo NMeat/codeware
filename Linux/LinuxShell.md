@@ -1,10 +1,10 @@
 **Shell部分**
 
-    lsof -i：端口号   列出谁在使用某个端口
+    lsof -i：端口号   			#列出谁在使用某个端口
 	netstat -lntp | grep 端口号  #查看某个服务是否在监听某个端口号
 
-    tail -n 行数值 	 文件名
-	head -n 行数值 文件名      显示前n行
+    tail -n 行数值 文件名
+	head -n 行数值 文件名      #显示前n行
 
 	cat  -n /etc/profile     		#对/etc目录中的profile的所有的行(包括空白行）显示行号 
 	cat 文件名 | grep 查找内容 | less/more
@@ -39,7 +39,6 @@
     uname -m 				    #显示机器的处理器架构
     uname -r 				    #显示正在使用的内核版本
     
-
     date						#显示系统日期
     cal 2007 					#显示2007年的日历表
     which ls					#显示命今ls的绝对路径
