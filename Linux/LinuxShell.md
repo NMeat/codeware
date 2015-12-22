@@ -17,12 +17,11 @@
 	find 路径名 -name "文件名/文件夹名"                   #在指定目录里查找相诮的文件或则文件夹
 	find / -type f -name "*.log" | xargs grep "ERROR"  #从根目录开始查找所有扩展名为.log的文本文件，并找出包含”ERROR”的行
 
-	grep -n "word" filename 						    #查找word并显示行数
-	grep -v "word" filanem 						    #显示不包含匹配的所有行
-	grep -nr --exclude-dir=".svn" 'INFO_URL' *
-	grep 'energywise' *           #在当前目录搜索带'energywise'行的文件
-	grep -r 'energywise' *        #在当前目录及其子目录下搜索'energywise'行的文件
-	grep -l -r 'energywise' *     #在当前目录及其子目录下搜索'energywise'行的文件，但是不显示匹配的行，只显示
+	grep -n "word" filename 					#指定文件内查找word并显示行数
+	grep -v "word" filanem 				    #指定文件内显示不包含匹配的所有行
+	grep 'energywise' *           			#在当前目录搜索带'energywise'行的文件
+	grep -r 'energywise' *        			#在当前目录及其子目录下搜索'energywise'行的文件
+	grep -l -r 'energywise' *     			#在当前目录及其子目录下搜索'energywise'行的文件，只显示匹配的文件
 	
 	ssh  name@remoteserver					#默认端口22
 	ssh  remoteserver -l name				#默认端口22
