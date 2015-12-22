@@ -16,6 +16,12 @@
 	find 路径名 -name "文件夹名" -exec rm -rf {} \　     #在指定目录里查找相应的文件夹并删除
 	find 路径名 -name "文件名/文件夹名"                   #在指定目录里查找相诮的文件或则文件夹
 	find / -type f -name "*.log" | xargs grep "ERROR"  #从根目录开始查找所有扩展名为.log的文本文件，并找出包含”ERROR”的行
+	
+	locate命令用于查找文件，它比find命令的搜索速度快，它需要一个数据库，这个数据库由每天的例行工作（crontab）程序来建立。当我们建立好这个数据库后，就可以方便地来搜寻所需文件了。
+
+	即先运行：updatedb（无论在那个目录中均可，可以放在crontab中 ）后在/var/lib/slocate/ 下生成 slocate.db 数据库即可快速查找。
+	在命令提示符下直接执行#updatedb 命令即可
+	locate filename 
 
 	grep -n "word" filename 					#指定文件内查找word并显示行数
 	grep -v "word" filanem 				    #指定文件内显示不包含匹配的所有行
