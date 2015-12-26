@@ -1,6 +1,7 @@
 **php框架--php框架的连贯查询实现原理**
 
 方法1：
+
     class sql{
     	private $sql=array("from"=>"",
     			"where"=>"",
