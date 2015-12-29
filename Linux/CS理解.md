@@ -8,8 +8,6 @@
     （4）异步IO（Asynchronous IO）
 
 ##1.同步与异步 ##
-    
-    同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)
 
 	同步(synchronous)和异步(asynchronous)其实是针对消息的发送和接受的次序而言的（在通信中就是消息的发送和接收，在IO中就是数据的读和写）。
 	同步的意思就是消息的发送和接收是有序的，即接收和发送第二个包一定在第一个包之后第三个包之前，而不是乱序。
