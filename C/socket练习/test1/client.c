@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     remote_addr.sin_port = htons(8000);             //服务器端口号
     
     //创建客户端套接字--IPv4协议，面向连接通信，TCP协议----------------------------->创建socket
-    if((client_sockfd = socket(PF_INET,SOCK_STREAM,0)) < 0){
+    if((client_sockfd = socket(PF_INET, SOCK_STREAM, 0)) < 0){
         perror("socket");
         return 1;
     }
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
         perror("connect");
         return 1;
     }
+    
     printf("connected to server\n");
     len = recv(client_sockfd, buf, BUFSIZ, 0); //接收服务器端信息
     buf[len] = '\0';
