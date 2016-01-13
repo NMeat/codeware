@@ -37,6 +37,7 @@
 
     ps -ef | grep '进程名称'
     ps aux | grep "进程名称"
+	ps -ef | grep '进程名称' |  wc -l     统计进程数量
     
     free -m						#查看内存的使用情况
     arch 					    #显示机器的处理器架构
@@ -56,6 +57,9 @@
     cal 2007 					#显示2007年的日历表
     which ls					#显示命今ls的绝对路径
     curl ifconfig.me    		#查看本机公网IP
+
+	netstat -an | grep ESTABLISHED | wc -l  //查看并发访问数
+	netstat -nat| grep -i "80" | wc -l		//返回所有80端口的请求总数
 
 **Ubuntu terminal快捷键**
 
