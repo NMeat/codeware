@@ -139,6 +139,6 @@ class LoginV2ex{
 }
 
 $lg = new LoginV2ex();
-$lg->login('laucie', 'laucie5178');
+$lg->login('', '');
 
 
