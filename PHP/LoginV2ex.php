@@ -1,8 +1,6 @@
 <?php
 /**
-* 
 *  登陆v2ex
-*
 */
 class LoginV2ex{
 	private $userName;	//用户名
@@ -82,8 +80,7 @@ class LoginV2ex{
 	}
 
 	//签到
-    public function signin()
-    {
+    public function signin(){
         $this->get(self::$API_SIGNINPAGE, $this->cookie);
         $this->getCookie($this->html);
         $this->getOnce($this->html);
@@ -110,8 +107,7 @@ class LoginV2ex{
 	}
 
 	//正则取cookie
-    private function getCookie($html)
-    {
+    private function getCookie($html){
         if (preg_match_all("/set\-cookie:([^\r\n]*)/i", $html, $matches)) {
             foreach ($matches[1] as $value) {
                 $this->cookie .= $value;
@@ -125,8 +121,7 @@ class LoginV2ex{
      * 获取登陆页面和签到
      * 页面中的校验码once
      */
-    private function getOnce($html)
-    {
+    private function getOnce($html){
         if (preg_match("/value=\"(\d+).*once/", $html, $matches)) {
         } elseif (preg_match("/once=(\d+)/", $html, $matches)) {
         } else {
