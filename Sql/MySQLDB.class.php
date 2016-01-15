@@ -14,8 +14,9 @@ class MySQLDB {
 	private $link;              //数据库连接
 	private $last_sql;          //最后执行的SQL
 	private static $instance;   //当前的实例对象
+
 	/**
-	 * 构造方法
+	 * 构造方法 私有构造方法 只能在类内部实例
 	 * @access private
 	 *
 	 * @param $params array 对象的选项
@@ -28,20 +29,19 @@ class MySQLDB {
 		$this->pass = isset($params['pass']) ? $params['pass'] : '';
 		$this->charset = isset($params['charset']) ? $params['charset'] : 'utf8';
 		$this->dbname  = isset($params['dbname']) ? $params['dbname'] : '';
-		//连接数据库
-		$this->connect();
-		//设置字符集
-		$this->setCharset();
-		//设置默认数据库
-		$this->selectDB();
+		
+		$this->connect();		//连接数据库 获取数据库连接资源句柄
+		$this->setCharset();	//设置字符集
+		$this->selectDB();		//设置默认数据库
 	}
+
 	//私有化克隆魔术方法 禁止复制对象
     private function __clone(){}
+
 	//获得单例对象
     public static function getInstance($params) {
         if (! (self::$instance instanceof self) ) {
-			//实例化时，需要将参数传递到构造方法内
-			self::$instance = new self($params);
+			self::$instance = new self($params);	//实例化时，需要将参数传递到构造方法内
 		}
 		return self::$instance;
 	}
@@ -52,7 +52,28 @@ class MySQLDB {
 			echo '连接失败，请检查mysql服务器与用户信息';
 			die;
         }else {
-			$this->link = $link;//连接成功
+			$this->link = $link;	//连接成功 数据库连接句柄
+		}
+	}
+
+	/**
+	 * 执行SQL的方法,PHPDocumentor
+	 *
+	 * @param $sql string 待执行的SQL
+	 *
+	 * @return mixed 成功返回 资源 或者 true，失败，返回false
+	 */
+    public function query($sql) {
+		$this->last_sql = $sql;	//要执行的SQL语句
+		if(!$result = mysqli_query($this->link,$sql)){	//执行，并返回结果
+			echo 'SQL执行失败<br>';
+			echo '出错了SQL是：', $sql, '<br>';
+			echo '错误代码是：', mysqli_errno($this->link), '<br>';
+			echo '错误信息是：', mysqli_error($this->link), '<br>';
+			die;
+			return false;//象征性的！
+        } else {
+			return $result;
 		}
 	}
 
@@ -64,35 +85,13 @@ class MySQLDB {
 
 	//设置默认数据库
     private function selectDB() {
-		//判断是否存在一个数据库名
-        if($this->dbname === '') {
+        if($this->dbname === '') {	//判断是否存在一个数据库名
 			return null;
 		}
 		$sql = "use `$this->dbname`";
 		return $this->query($sql);
 	}
 
-	/**
-	 * 执行SQL的方法,PHPDocumentor
-	 *
-	 * @param $sql string 待执行的SQL
-	 *
-	 * @return mixed 成功返回 资源 或者 true，失败，返回false
-	 */
-    public function query($sql) {
-		$this->last_sql = $sql;
-		//执行，并返回结果
-		if(!$result = mysqli_query($this->link,$sql)){
-			echo 'SQL执行失败<br>';
-			echo '出错了SQL是：', $sql, '<br>';
-			echo '错误代码是：', mysqli_errno($this->link), '<br>';
-			echo '错误信息是：', mysqli_error($this->link), '<br>';
-			die;
-			return false;//象征性的！
-        } else {
-			return $result;
-		}
-	}
 	/**
 	 * @param $sql string 待执行的sql
 	 * @return array      二维数组
@@ -104,8 +103,7 @@ class MySQLDB {
             while($row = mysqli_fetch_assoc($result)){
 				$rows[] = $row;
 			}
-			//释放结果集
-			mysqli_free_result($result);
+			mysqli_free_result($result);	//释放结果集
 			return $rows;	
         } else {
 			return false;//执行失败
