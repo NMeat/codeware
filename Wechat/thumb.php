@@ -7,19 +7,16 @@
  *        $id     Int    -图片的ID
  *@return void  
  */
-function cutimg($img,$width,$height,$id)
-{	
+function cutimg($img,$width,$height,$id){	
     //给定的文件名取得的图像。
     $size = getimagesize($img);
     //判断图片类型
     if ($size[2] == 1)
     {
         $src = imagecreatefromgif($img); //从路径创建图像
-    }elseif($size[2] == 2)
-    {
+    }elseif($size[2] == 2){
         $src = imagecreatefromjpeg($img); 
-    }else
-    {
+    }else{
         $src = imagecreatefrompng($img); 
     }
     //如果图片的宽比要求的小，则以原图宽为准
@@ -41,8 +38,7 @@ function cutimg($img,$width,$height,$id)
  *          $id   Mixed  - 图片ID
  *@return         String - 缩略图路径
  */
-function thumbPic($path,$id)
-{
+function thumbPic($path,$id){
     $imgSize  = getimagesize($path);//图片size
     $width    = $imgSize[0];//原图片宽
     $height   = $imgSize[1];//原图片高
@@ -51,9 +47,7 @@ function thumbPic($path,$id)
         $scale     = round($width/300, 1);//缩放比例
         $newWidth  = 300; 
         $newHeight = round($height/$scale, 1); 
-    }
-    else
-    {
+    }else{
         $scale     = round($height/300, 1);//缩放比列
         $newHeight = 300; 
         $newWidth  = round($width/$scale, 1);

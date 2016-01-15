@@ -4,16 +4,13 @@
  *@author:   liuzhifeng
  *@date  :   2015-02-05
  */
-class wechatApi
-{
+class wechatApi{
     /**
      *@param   $echoStr String -随机字符串
      *@return  $echoStr String -返回随机字符串
      */
-    public function valid($echoStr)
-    {
-        if($this->checkSignature())
-        {
+    public function valid($echoStr){
+        if($this->checkSignature()){
             echo $echoStr;//原路返回验证的随机字符串
             exit;
         }
@@ -25,8 +22,7 @@ class wechatApi
      *         String   -$nonce      随机数
      *@return  Boolean  -true/false  
      */
-   private function checkSignature()
-   {
+   private function checkSignature(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce     = $_GET["nonce"];
@@ -35,12 +31,9 @@ class wechatApi
         sort($tmpArr);//将数组进行字典序排序
         $tmpStr    = implode( $tmpArr );
         $tmpStr    = sha1( $tmpStr );
-        if($tmpStr == $signature)
-        {
+        if($tmpStr == $signature){
             return true;
-        }
-        else
-        {
+        }else{
             return false;
         }
     }
@@ -52,8 +45,7 @@ class wechatApi
      *        $contentStr    String -回复内容
      *@return $result        String -XML格式的内容 
      */
-    public function responseMsg($fromUsername, $toUsername, $time, $msgType="text", $contentStr)
-    {
+    public function responseMsg($fromUsername, $toUsername, $time, $msgType="text", $contentStr){
         $textTpl = "<xml>
                     <ToUserName><![CDATA[%s]]></ToUserName>
                     <FromUserName><![CDATA[%s]]></FromUserName>
