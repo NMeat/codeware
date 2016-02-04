@@ -13,6 +13,21 @@
 
     ssh-keygen -t rsa -C "xxx@gmail.com"
 
+知识引申：
+
+	常用生成密钥对的工具有三个:OpenSSH,OpenSSL,GPG
+	#OpenSSh
+	#运行后,会询问用户密钥文件名
+	#然后在当前的目录生成两个密钥文件:id_rsa（私钥）和id_rsa.pub(公钥)
+    命令：ssh-keygen -t rsa -b 4096 -C "your.email@service.com"
+
+	#OpenSSL
+    #生成私钥 然后生成公钥
+	命令：openssl genrsa -out private_key.pem 4096
+		 openssl rsa -pubout -in private_key -out public_key.pem
+	#GPG
+	命令:gpg --gen-key
+
 查看是否已经有了ssh密钥:
 
     cd ~/.ssh
