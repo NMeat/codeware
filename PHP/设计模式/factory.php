@@ -13,15 +13,21 @@
 //工厂模式 提供获取某个对象实例的一个接口，同时使调用代码避免确定实例化基类的步骤  
 //字符串类  
 class String {  
-    public function write() {}  
+    public function write() {
+        return 'String'
+    }  
 }  
 //Json类  
 class Json {  
-    public function getJsonData() {}  
+    public function getJsonData() {
+        return 'Json';
+    }  
 }  
 //xml类  
 class Xml {  
-    public function buildXml() {}  
+    public function buildXml() {
+        return 'Xml';
+    }  
 }  
 //工厂类  
 class Factory {  
@@ -29,4 +35,5 @@ class Factory {
         return new $class;  
     }  
 }  
-Factory::create("Json"); //获取Json对象   
+$ob = Factory::create("Json"); //获取Json对象
+$ob->getJsonData();   

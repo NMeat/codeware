@@ -10,21 +10,21 @@
 2.md5()为单向加密，没有逆向解密算法，但是还是可以对一些常见的字符串通过收集，枚举，碰撞等方法破解
 
     <?php
-    $username='jellybool';
-    $password='jellybool.com';
-    /*简单地对字符串进行md5加密*/
-    echo md5($username);
-    echo "<hr>";
-    echo md5($password);
-    echo "<hr>";
-    /*更推荐的做法是对重要的敏感数据进行多次加密，以防被轻易破解*/
-    echo md5(md5($password));
-    
-    /*以上输出：
-    username：4f5436e5d72608fb647b691e8edcf42e
-    password：7bf02cf0f4af6da4accbc73d2a175476
-    password(两次加密)：864704bb35754f8cd0232cba6b91521b
-    */
+	    $username='jellybool';
+	    $password='jellybool.com';
+	    /*简单地对字符串进行md5加密*/
+	    echo md5($username);
+	    echo "<hr>";
+	    echo md5($password);
+	    echo "<hr>";
+	    /*更推荐的做法是对重要的敏感数据进行多次加密，以防被轻易破解*/
+	    echo md5(md5($password));
+	    
+	    /*以上输出：
+	    username：4f5436e5d72608fb647b691e8edcf42e
+	    password：7bf02cf0f4af6da4accbc73d2a175476
+	    password(两次加密)：864704bb35754f8cd0232cba6b91521b
+    	*/
 
 **Crypt加密**：
 

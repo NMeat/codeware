@@ -27,7 +27,7 @@ class order {
     public function obServer($type) {  
         if (isset($this->observers[$type])) {  
             foreach ($this->observers[$type] as $obser) {  
-                $a = new $obser;  
+                $a = new $obser();  
                 echo "<br>";
                 $a->update($this); //公用方法  
             }  
@@ -55,7 +55,7 @@ class orderStatus {
     }  
 }
 
-$ob = new order;    //实例化订单对象
+$ob = new order();    //实例化订单对象
 $ob->addObServer('buy', 'orderEmail');  //添加观察者
 $ob->addObServer('buy', 'orderStatus');  
 $ob->create();  
