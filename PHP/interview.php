@@ -26,7 +26,6 @@ class Test{
 		}elseif($lenA > $lenB){
 			$this->arrB = array_pad($this->arrB, -$lenA,0);
 		}
-		
 		return array_map("doAdd", $this->arrA, $this->arrB);
 	}
 }
