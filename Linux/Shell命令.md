@@ -35,7 +35,7 @@
 
 	find dir -name "文件夹名" -exec rm -rf {} \　     在指定目录里查找相应的文件夹并删除
 	find dir -name "文件名/文件夹名"                   在指定目录里查找相诮的文件或则文件夹
-	find / -type f -name "*.log" | xargs grep "ERROR"  #从根目录开始查找所有扩展名为.log的文本文件，并找出包含”ERROR”的行
+	find / -type f -name "*.log" | xargs grep "ERROR"  从根目录查找所有扩展名为.log的文本文件并找出包含”ERROR”的行
 	
 **locate**
 
