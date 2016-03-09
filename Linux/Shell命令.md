@@ -1,16 +1,18 @@
 **Shell部分**
 
-    lsof -i：端口号   			#列出谁在使用某个端口
-	netstat -lntp | grep 端口号  #查看某个服务是否在监听某个端口号
+ 	lsof -i：[port number]   				#列出谁在使用某个端口
+	netstat -lntp | grep [port number]  	#查看某个服务是否在监听某个端口号
 
-    tail -n 行数值 文件名
-	head -n 行数值 文件名      #显示前n行
 
-	cat  -n /etc/profile     		#对/etc目录中的profile的所有的行(包括空白行）显示行号 
-	cat 文件名 | grep 查找内容 | less/more
-	cat 文件名 | less/more  			#显示文件内容
+	tail -n 行数值 filename      #显示后N行
+	tail -f filename            #循环查看文件内容
+	head -n 行数值 filename      #显示前N行
+
+	cat  -n filename     	 #对/etc目录中的profile的所有的行(包括空白行）并显示行号 
+	cat filename | grep 目标内容 | less/more
+	cat filename | less/more  		#显示文件内容
 	cat /proc/cpuinfo 	     		#显示CPU info的信息
-    cat /proc/net/dev 				#显示网络适配器及统计
+ 	cat /proc/net/dev 				#显示网络适配器及统计
 	cat /proc/version 				#显示内核的版本
 
 	find 路径名 -name "文件夹名" -exec rm -rf {} \　     #在指定目录里查找相应的文件夹并删除
