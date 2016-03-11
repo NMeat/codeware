@@ -64,3 +64,11 @@ function fuckArr($arr){
 $arrTest = fuckArr($arrTest);
 echo "<pre>";
 var_dump($arrTest);
+
+
+/*
+    糯米网
+    关于数据表优化，有一个人员信息表，大概有1000W行，有个字段是"入*申请书"，该字段大概要10+K,假如我想获取这个字段的内容，
+    该如何优化这张表。 
+    读写分离 索引 先垂直分表 再水平分表 
+*/
