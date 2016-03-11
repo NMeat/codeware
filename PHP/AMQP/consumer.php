@@ -6,7 +6,7 @@ $conn_args = array(
     'port' => '5672',   
     'login' => 'guest',   
     'password' => 'guest',  
-    'vhost'=>'/'  
+    'vhost' =>'/'  
 );    
 $e_name  = 'e_linvo';    //交换机名  
 $q_name  = 'q_linvo';    //队列名  

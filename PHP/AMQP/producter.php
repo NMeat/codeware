@@ -2,13 +2,13 @@
 //生产者:创建连接-->创建channel-->创建交换机对象-->发送消息    
 //配置信息  
 $conn_args = array(  
-    'host' => '127.0.0.1',   
-    'port' => '5672',   
+    'host' =>  '127.0.0.1',   
+    'port' =>  '5672',   
     'login' => 'guest',   
     'password' => 'guest',  
-    'vhost'=>'/'  
+    'vhost' => '/'  
 );    
-$e_name = 'e_linvo';    //交换机名  
+$e_name  = 'e_linvo';    //交换机名  
 //$q_name = 'q_linvo';  //无需队列名  
 $k_route = 'key_1';     //路由key  
   
