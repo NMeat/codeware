@@ -1,9 +1,9 @@
 <?php
 /*
-	小米的一道面试题
-	一个类有两个属性，都是整型数组
-	有两个方法，一个方法对任意一个成员属性进行排序
-	另一个方法对两个数组进行相加
+    小米的一道面试题
+    一个类有两个属性，都是整型数组
+    有两个方法，一个方法对任意一个成员属性进行排序
+    另一个方法对两个数组进行相加
 */
 class Test{
 	public $arrA;
@@ -30,6 +30,7 @@ class Test{
 		return array_map("doAdd", $this->arrA, $this->arrB);
 	}
 }
+
 //回调函数
 function doAdd($arrA, $arrB){
 	return $arrA + $arrB;
@@ -42,18 +43,18 @@ $addArr = $testObj->addArr();
 
 
 /*
-  微店的一道面试题
-  任意一个整型数组 有奇数有偶数元素 要求处理后的
-  数组 奇数在左边 偶数在右边
+    微店的一道面试题
+    任意一个整型数组 有奇数有偶数元素 要求处理后的
+    数组 奇数在左边 偶数在右边
  */
 $arrTest = array(23,7,4,3,2,9,90,456,3459,6,10);
 
 function fuckArr($arr){
 	if(!is_array($arr)) return false;
-	$tempArr = array();
+	$tempArr = array();                         //临时数组变量
 	foreach($arr as $value){
 		if($value % 2 == 0){
-			array_push($tempArr,$value);	//在数组的尾部插入一个元素
+			array_push($tempArr,$value);	    //在数组的尾部插入一个元素
 		}else{
 			array_unshift($tempArr, $value);	//在数组的首部插入一个元素
 		}
