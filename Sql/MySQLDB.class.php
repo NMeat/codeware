@@ -28,7 +28,7 @@ class MySQLDB {
 		$this->user = isset($params['user']) ? $params['user'] : 'root';
 		$this->pass = isset($params['pass']) ? $params['pass'] : '';
 		$this->charset = isset($params['charset']) ? $params['charset'] : 'utf8';
-		$this->dbname  = isset($params['dbname']) ? $params['dbname'] : '';
+		$this->dbname  = isset($params['dbname'])  ? $params['dbname']  : '';
 		
 		$this->connect();		//连接数据库 获取数据库连接资源句柄
 		$this->setCharset();	//设置字符集
