@@ -104,25 +104,6 @@ function getLastMonthLastDay($date){
     $day = date("j", $time); //获取当前日期是当前月的第几天
     return date("Y-m-d", strtotime("-{$day} days", $time));
 }
-/**
- *获取一个路径相对于另一个另一个路径的相对路径
- *@param $a string 路径1
- *@param $b string 路径2
- *
- *@return string
- */
-function getRelativePath($a,$b){
-    $a2array = explode("/", $a);
-    $b2array = explode("/", $b);
-    $relativePath = array();
-    for($i = 1; $i <= count($b2array) - 2; $i++){
-        $relativePath[] = $a2array[$i] == $b2array[$i] ? ".." : $b2array[$i];
-    }
-    return implode("/",$relativePath);//把数组转换成字符串
-}
-
-$tmp =  getRelativePath("/a/b/c/d/e.php", "/a/b/13/14/c.php");
-print_r($tmp);
 
 /**
  *截取字符串
