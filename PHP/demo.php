@@ -66,7 +66,7 @@ function my_scandir($dir){
                     if(is_dir($dir . "/" .$file)){
                         $files[$file] = my_scandir($dir . "/" . $file);
                     }else{
-                        $files[] = $dir . "/" . $file; //把
+                        $files[] = $dir . "/" . $file; 
                     }
                 }
             }
