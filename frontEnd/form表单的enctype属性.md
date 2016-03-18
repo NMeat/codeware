@@ -15,7 +15,6 @@ HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规
 协议规定 POST 提交的数据必须放在消息主体（entity-body）中，但协议并没有规定数据必须使用什么编码方式。实际上，开发者完全可以自己决定消息主体的格式，只要最后发送的 HTTP 请求满足上面的格式就可以。
 
 用 enctype 属性指定将数据回发到服务器时浏览器使用的编码类型，enctype是EncodeType的简写。
-PTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据
 
 	application/x-www-form-urlencoded
 		默认类型	
