@@ -1,9 +1,9 @@
 #!/usr/bin/expect -f  
-set user root
-set ip 138.128.194.193  
-set password gxs5SvTsvnp4 
-set timeout 1000
-set port 29010  
+set user xxx
+set ip xxx.xxx.xxx.xxx  
+set password xxx 
+set timeout xxx
+set port xxx  
 spawn ssh $user@$ip -p $port   
 expect {               
  	"*password:" { send "$password\r" }      //出现密码提示,发送密码  
