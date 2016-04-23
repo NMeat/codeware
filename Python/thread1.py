@@ -3,7 +3,7 @@ import threading
 from time import ctime,sleep
 
 def super_player(file,time):
-	for i in range(2)
+	for i in range(2):
 		print 'Start playing: %s! %s' %(file,ctime());
 		sleep(time);
 #歌曲字典
