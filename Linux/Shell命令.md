@@ -67,8 +67,8 @@
 **ps:process**
 
     ps -ef | grep '进程名称'
-    ps aux | grep "进程名称"
 	ps -ef | grep '进程名称' |  wc -l     统计进程数量
+	ps aux | grep "进程名称"
     
 **tar**
 	
