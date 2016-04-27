@@ -85,18 +85,25 @@
     which ls					#显示命今ls的绝对路径
     curl ifconfig.me    		#查看本机公网IP
     
-**Ubuntu terminal快捷键**
+**Linux terminal快捷键**
 
-	ctrl+alt+t        打开一下终端窗口
-	ctrl+shift + t    在终端窗口中打开一个标签
 	tab 	          制表符　自动补全
-	ctrl+a 	          移动光标到开始位置
+	ctrl+a 	        移动光标到开始位置
 	ctrl+e            移动光标到结束位置
 	ctrl+h            删除当前字符
-	ctrl+l            清屏 相当于clear
 	ctrl+k            删除此处至末尾的所有内容
 	ctrl+u            删除此处至开始的所有内容
-	shift+ctrl+c      复制
-	shift+ctrl+v　　　 粘贴
+	ctrl+l            清屏 相当于clear
+	
+**Mac下的快捷键**
+
+	delete     键，也就是删除光标之前的一个字符（默认）；
+	fn+delete  键，删除光标之后的一个字符；
+	opt+delete 键，删除光标之前的一个单词（英文有效）
+	cmd+delete 键，删除光标之前整行内容；
+	选中文件后按 cmd+delete ，删除掉该文件；
+
+
+
 
 
