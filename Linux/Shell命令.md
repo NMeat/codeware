@@ -102,7 +102,9 @@
 	opt+delete 键，删除光标之前的一个单词（英文有效）
 	cmd+delete 键，删除光标之前整行内容；
 	选中文件后按 cmd+delete ，删除掉该文件；
+**PHP相关**
 
+	php -m 查看php的扩展
 
 
 
