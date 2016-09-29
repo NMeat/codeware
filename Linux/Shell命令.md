@@ -105,6 +105,21 @@
 **PHP相关**
 
 	php -m 查看php的扩展
+**Linux下时间戳和日期的相互转换**
+
+	date -d "@1279592730" => 2010年 07月 20日 星期二 10:25:30 CST
+	date -d '2016-09-20 00:00:00' +%s => 1474300800
+**Linux下时间戳和日期的相互转换**
+
+	select FROM_UNIXTIME(1156219870); --> 2006-08-22 12:11:10
+	Select UNIX_TIMESTAMP('2006-11-04 12:23:00'); -->1162614180
+	Select NOW(); -->得到当前时间
+	
+**关于时间格式的解释**
+
+	UTC	  (Universal Time Coordinated,UTC)世界协调时间
+	CST （China Standard Time UTC+8:00）中国沿海时间(北京时间)
+	GMT  (Greenwich Mean Time)格林威治标准时间
 
 
 
