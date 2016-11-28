@@ -67,3 +67,8 @@ function
 统计网络连接数
 
 	netstat -an | awk '/^tcp/{state[$NF]++}END{for(key in state){print key,"\t",state[key]}}'|column -t
+	
+
+统计小区访问数
+
+	awk 'BEGIN{count=0}/xiaoqu/{if($9 ~ /^\/xiaoqu.*?\//){count++;a[$1]++}}END{print count;for(key in a){ print key,"\t",a[key]}}' access.log | sort -n -k 2 -r | head -n 10
