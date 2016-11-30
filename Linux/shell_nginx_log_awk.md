@@ -72,3 +72,5 @@ function
 统计小区访问数
 
 	awk 'BEGIN{count=0}/xiaoqu/{if($9 ~ /^\/xiaoqu.*?\//){count++;a[$1]++}}END{print count;for(key in a){ print key,"\t",a[key]}}' access.log | sort -n -k 2 -r | head -n 10
+	awk '/xiaoqu/{if($6 ~/2016:2[2-3]/ && $9 ~ /^\/xiaoqu.*?\/$/){print $0}}' access.log
+	awk '{a[$1]++;}END{for(key in a){print key,"\t",a[key]}}' c.log | sort -n -k2 -r | head -n 10
