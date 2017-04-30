@@ -1,4 +1,4 @@
-[TOC]
+
 
 ## CentOS 7 安装shadowsocks
 
@@ -58,5 +58,36 @@
    echo_supervisord_conf > /etc/supervisord.conf
    mkdir -p /var/log/supervisor
    mkdir -p /etc/supervisor/conf.d/
-   echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf" >> /etc/supervisord.conf
+   echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf">>/etc/supervisord.conf
+   ```
+
+3. 添加相应的配置  vim /usr/lib/systemd/system/supervisord.service
+
+   ```
+   # supervisord service for systemd (CentOS 7.0+)
+   # by ET-CS (https://github.com/ET-CS)
+   [Unit]
+   Description=Supervisor daemon
+
+   [Service]
+   Type=forking
+   ExecStart=/usr/bin/supervisord
+   ExecStop=/usr/bin/supervisorctl $OPTIONS shutdown
+   ExecReload=/usr/bin/supervisorctl $OPTIONS reload
+   KillMode=process
+   Restart=on-failure
+   RestartSec=42s
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+4. systemctl enable supervisord.service 开启服务
+
+   ```
+   supervisord 启动supervisord服务端
+   supervisorctl reload 重载supervisorctl
+   supervisorctl start shadowsocks 运行SS
+   supervisorctl stop shadowsocks 停止SS
+   supervisorctl restart shadowsocks 重启SS
    ```
