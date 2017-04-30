@@ -1,3 +1,5 @@
+[TOC]
+
 ## CentOS 7 安装shadowsocks
 
 1. yum install python-setuptools && easy_install pip
@@ -46,8 +48,15 @@
 
    ​
 
+## 安装supervisor来监测shadowsocks服务
 
+1. easy_install supervisor  安装
 
+2.  生成配置文件
 
-
-安装
+   ```
+   echo_supervisord_conf > /etc/supervisord.conf
+   mkdir -p /var/log/supervisor
+   mkdir -p /etc/supervisor/conf.d/
+   echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf" >> /etc/supervisord.conf
+   ```
