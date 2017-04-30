@@ -4,7 +4,7 @@
 
 2. pip install shadowsocks
 
-3. 创建配置文件     vim /etc/shadowsocks.json
+3. 创建配置文件     vim /etc/shadowsocks.json 以下是多账号的配置
 
    ```json
    {
@@ -19,3 +19,11 @@
    	"fast_open": false
    }
    ```
+
+4. ssserver -c /etc/shadowsocks.json -d start   启动服务
+
+   ssserver -c /etc/shadowsocks.json -d stop   停止服务
+
+5. 检查日志
+
+   less /var/log/shadowsocks.log
