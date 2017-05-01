@@ -52,7 +52,7 @@
 
 1. easy_install supervisor  安装
 
-2.  生成配置文件
+2. 生成配置文件
 
    ```
    echo_supervisord_conf > /etc/supervisord.conf
@@ -91,3 +91,119 @@
    supervisorctl stop shadowsocks 停止SS
    supervisorctl restart shadowsocks 重启SS
    ```
+
+
+
+
+
+## BBR加速
+
+1. 查看当前内核
+
+   ```
+   uname -r
+   显示:3.10.0-514.2.2.el7.x86_64
+   ```
+
+2. 安装ELRepo repo源
+
+   ```
+   sudo rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+   sudo rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+   ```
+
+3. 升级内核至4.9+
+
+   ```
+   sudo yum --enablerepo=elrepo-kernel install kernel-ml -y
+   ```
+
+4. 确认安装结果
+
+   ```
+   rpm -qa | grep kernel
+   If the installation is successful, you should see kernel-ml-4.9.0-1.el7.elrepo.x86_64 among the output list:
+   ```
+
+   ```
+   kernel-tools-libs-3.10.0-514.16.1.el7.x86_64
+   kernel-3.10.0-514.el7.x86_64
+   kernel-3.10.0-514.10.2.el7.x86_64
+   kernel-tools-3.10.0-514.16.1.el7.x86_64
+   kernel-3.10.0-514.16.1.el7.x86_64
+   kernel-ml-4.10.13-1.el7.elrepo.x86_64  #目前是4.10
+   ```
+
+5. enable the 4.9.0 kernel by setting up the default grub2 boot entry
+
+   ```
+   sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
+   ```
+
+   ```
+   显示如下:
+   CentOS Linux (4.10.13-1.el7.elrepo.x86_64) 7 (Core)
+   CentOS Linux 7 Rescue d8a77e850a4d412fad892befce9bd9c8 (3.10.0-514.16.1.el7.x86_64)
+   CentOS Linux (3.10.0-514.16.1.el7.x86_64) 7 (Core)
+   CentOS Linux (3.10.0-514.10.2.el7.x86_64) 7 (Core)
+   CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)
+   CentOS Linux (0-rescue-41bda1dfef7941278145d8fc0d781204) 7 (Core)
+   ```
+
+6. Since the line count starts at 0 and the 4.10 kernel entry is on the second line, set the default boot entry as 0:
+
+   ```
+   sudo grub2-set-default 0
+   sudo shutdown -r now
+   uname -r
+   ```
+
+   ```
+   显示如下:
+   4.10.13-1.el7.elrepo.x86_64
+   ```
+
+7. enable bbr
+
+   ```
+   echo 'net.core.default_qdisc=fq' | sudo tee -a /etc/sysctl.conf
+   echo 'net.ipv4.tcp_congestion_control=bbr' | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+   ```
+
+   Now, you can use the following commands to confirm that BBR is enabled:
+
+   ```
+   sudo sysctl net.ipv4.tcp_available_congestion_control
+   ```
+
+   The output should resemble:
+
+   ```
+   net.ipv4.tcp_available_congestion_control = bbr cubic reno
+   ```
+
+   Next, verify with:
+
+   ```
+   sudo sysctl -n net.ipv4.tcp_congestion_control
+   ```
+
+   The output should be:
+
+   ```
+   bbr
+   ```
+
+   Finally, check that the kernel module was loaded:
+
+   ```
+   lsmod | grep bbr
+   ```
+
+   The output will be similar to:
+
+   ```
+   tcp_bbr                16384  0
+   ```
+
