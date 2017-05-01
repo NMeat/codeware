@@ -82,7 +82,7 @@
    WantedBy=multi-user.target
    ```
 
-4. systemctl enable supervisord.service 开启服务
+4. systemctl enable supervisord.service 设置开机启动服务
 
    ```
    supervisord 启动supervisord服务端
@@ -206,4 +206,3 @@
    ```
    tcp_bbr                16384  0
    ```
-
