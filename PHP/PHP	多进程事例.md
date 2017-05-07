@@ -40,7 +40,7 @@ class StatInfo
   	
 	public function forkRun($start){
 		$start_set = 1;
-		while ($start_set <= 5) {
+		while($start_set <= 5){
 			echo $start . "\n";
 			sleep(rand(1,5));
 			++$start_set;
@@ -49,4 +49,5 @@ class StatInfo
 }
 $obj = new StatInfo();
 $obj->run();
+?>
 ```
