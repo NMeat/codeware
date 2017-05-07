@@ -38,7 +38,7 @@ class StatInfo
         }
     }
 
-	 public function forkRun($start){
+	public function forkRun($start){
         $start_set = 1;
         while ($start_set <= 5) {
             echo $start . "\n";
