@@ -1,4 +1,6 @@
-有比特流、帧、分组、报文的问题学习
+#### OSI （开放系统互联(Open System Interconnection)
+
+ **有比特流、帧、分组、报文的问题学习**
 
 	传输层：TCP数据段(Segment)、UDP报文(Datagram)
 
@@ -7,11 +9,11 @@
 	数据链路层: 数据帧（Frame）
 
 	物理层: 比特(Bit)
-	
+
 	一个Datagram可能封装成一个或则几个Packets中，在数据层中传输
-	
-	
-TCP/IP和OSI(Open System Interconnection，开放系统互联)七层模型所对应的协议
+
+​	
+**TCP/IP和OSI(Open System Interconnection，开放系统互联)七层模型所对应的协议**
 
 	TCP/IP : 
 	数据链路层：ARP,RARP
