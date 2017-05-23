@@ -1,4 +1,4 @@
-**Mysql存储时间字段用int、timestamp还是datetime?**
+##### **Mysql存储时间字段用int、timestamp还是datetime?**
 
 INT
 
@@ -38,12 +38,12 @@ DATETIME
 
 	在MYSQL中数据类型有三种:文本、数字、日期
 	字符串类型:   
-    char(n)			0-255字节	定长字符串
-    varchar(n)		0-65535 字节	变长字符串
-    TINYBLOB		0-255字节	不超过 255 个字符的二进制字符串
-    TINYTEXT		0-255字节	短文本字符串
-    BLOB			0-65 535字节	二进制形式的长文本数据
-    TEXT			0-65 535字节	长文本数据
+	char(n)			0-255字节	定长字符串
+	varchar(n)		0-65535 字节	变长字符串
+	TINYBLOB		0-255字节	不超过 255 个字符的二进制字符串
+	TINYTEXT		0-255字节	短文本字符串
+	BLOB			0-65 535字节	二进制形式的长文本数据
+	TEXT			0-65 535字节	长文本数据
 	MEDIUMBLOB		0-16 777 215字节	二进制形式的中等长度文本数据
 	MEDIUMTEXT		0-16 777 215字节	中等长度文本数据
 	LONGBLOB		0-4 294 967 295字节	二进制形式的极大文本数据
@@ -58,22 +58,22 @@ DATETIME
 	FLOAT(size,d)   4字节	单精度
 	DOUBLE(size,d)	8字节	双精度
 	DECIMAL(size,d)	作为字符串存储的 DOUBLE 类型，允许固定的小数点。
-
+	
 	这些整数类型拥有额外的选项 UNSIGNED。通常，整数可以是负数或正数。如果添加 UNSIGNED 属性，
 	那么范围将从 0 开始，而不是某个负数。
 	---------------------------------------------------------------------
 	日期和时间类型：
-    DATE	3字节	1000-01-01/9999-12-31	-----YYYY-MM-DD
-    TIME	3字节	-838:59:59/838:59:59		-----HH:MM:SS
-    YEAR	1字节	1901/2155				-----YYYY
-    DATETIME  8字节	1000-01-01 00:00:00/9999-12-31 23:59:59	--YYYY-MM-DD HH:MM:SS
-    TIMESTAMP 8字节	1970-01-01 00:00:00/2037 年某时	---YYYYMMDD HHMMS
-
-    即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。
+	DATE	3字节	1000-01-01/9999-12-31	-----YYYY-MM-DD
+	TIME	3字节	-838:59:59/838:59:59		-----HH:MM:SS
+	YEAR	1字节	1901/2155				-----YYYY
+	DATETIME  8字节	1000-01-01 00:00:00/9999-12-31 23:59:59	--YYYY-MM-DD HH:MM:SS
+	TIMESTAMP 8字节	1970-01-01 00:00:00/2037 年某时	---YYYYMMDD HHMMS
+	
+	即便 DATETIME 和 TIMESTAMP 返回相同的格式，它们的工作方式很不同。
 	在 INSERT 或 UPDATE 查询中，TIMESTAMP 自动把自身设置为当前的日期和时间。
 	TIMESTAMP 也接受不同的格式，比如YYYYMMDDHHMMSS、YYMMDDHHMMSS、YYYYMMDD 或 YYMMDD。
 
-SQL操作:
+##### SQL操作:
 
 	创建用户:
 		grant 权限 on 数据库.* to 用户名@登录主机 identified by "密码";
@@ -102,8 +102,10 @@ SQL操作:
 	权限有14种权限:
 	  select,insert,update,delete,create,drop,index,alter,grant,
 	  references,reload,shutdown,process
-	
 
+##### 列出new_xiaouq_id字段有重复的数据
 
-
+```
+select new_xiaoqu_id,count(*) as count from xiaoqu_xiaoqu group by new_xiaoqu_id having count>1;
+```
 
