@@ -23,12 +23,12 @@
 	cat /proc/cpuinfo 	     		显示CPU info的信息
  	cat /proc/net/dev 				显示网络适配器及统计
 	cat /proc/version 				显示内核的版本
-	
+
 	free -m						 查看内存的使用情况
-    arch 					        显示机器的处理器架构
-    
+	arch 					        显示机器的处理器架构
+
   **uname**
-  
+
     uname -m 				      显示机器的处理器架构
     uname -r 				      显示正在使用的内核版本
 **find**
@@ -38,16 +38,16 @@
 	find / -type f -name "*.log" | xargs grep "ERROR"  从根目录查找所有扩展名为.log的文本文件并找出包含”ERROR”的行
 	find . -type d -exec chmod 755 {} \; 
 	find . -type f -exec chmod 644 {} \; 
-	
+
 **locate**
 
 	locate命令用于查找文件，它比find命令的搜索速度快，它需要一个数据库，
 	这个数据库由每天的例行工作（crontab）程序来建立。当我们建立好这个数据库后，就可以方便地来搜寻所需文件了。
-
+	
 	即先运行：updatedb（无论在那个目录中均可，可以放在crontab中 ）
 	后在/var/lib/slocate/ 下生成 slocate.db 数据库即可快速查找。
 	locate filename  查找该文件
-	
+
 **grep**
 
 	grep -n "word" filename					#指定文件内查找word并显示行数
@@ -55,7 +55,7 @@
 	grep 'energywise' *           		#在当前目录搜索带'energywise'行的文件
 	grep -r 'energywise' *        		#在当前目录及其子目录下搜索'energywise'行的文件
 	grep -l -r 'energywise' *     		#在当前目录及其子目录下搜索'energywise'行的文件，只显示匹配的文件	
-	
+
 **ssh**
 
 	ssh  name@remoteserver					#默认端口22
@@ -67,24 +67,24 @@
 **ps:process**
 
     ps -ef | grep '进程名称'
-	ps -ef | grep '进程名称' |  wc -l     统计进程数量
-	ps aux | grep "进程名称"
-    
+    ps -ef | grep '进程名称' |  wc -l     统计进程数量
+    ps aux | grep "进程名称"
+
 **tar**
-	
+​	
 	tar.gz格式
 	tar -zcvf [目标文件名].tar.gz [原文件名/目录名]  打包并压缩
 	tar -zxvf [原文件名].tar.gz		解压并解包
-    
+	
 	tar.bz2格式
 	tar -jcvf [目标文件名].tar.bz2 [原文件名/目录名]	打包并压缩
 	tar -jxvf [原文件名].tar.bz2						#解压并解包
+	
+	date						#显示系统日期
+	cal 2007 					#显示2007年的日历表
+	which ls					#显示命今ls的绝对路径
+	curl ifconfig.me    		#查看本机公网IP
 
-    date						#显示系统日期
-    cal 2007 					#显示2007年的日历表
-    which ls					#显示命今ls的绝对路径
-    curl ifconfig.me    		#查看本机公网IP
-    
 **Linux terminal快捷键**
 
 	tab 	          制表符　自动补全
@@ -94,7 +94,7 @@
 	ctrl+k            删除此处至末尾的所有内容
 	ctrl+u            删除此处至开始的所有内容
 	ctrl+l            清屏 相当于clear
-	
+
 **Mac下的快捷键**
 
 	delete     键，也就是删除光标之前的一个字符（默认）；
@@ -114,13 +114,15 @@
 	select FROM_UNIXTIME(1156219870); --> 2006-08-22 12:11:10
 	Select UNIX_TIMESTAMP('2006-11-04 12:23:00'); -->1162614180
 	Select NOW(); -->得到当前时间
-	
+
 **关于时间格式的解释**
 
 	UTC	  (Universal Time Coordinated,UTC)世界协调时间
 	CST （China Standard Time UTC+8:00）中国沿海时间(北京时间)
 	GMT  (Greenwich Mean Time)格林威治标准时间
 
+**当前目录下占用空间最多的5个资源**
 
-
-
+```
+du -s * | sort -nr | sed 5q
+```
