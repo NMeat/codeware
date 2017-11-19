@@ -1,4 +1,4 @@
-## PHP	多进程事例
+## PHP多进程代码实例
 
 ```php
 <?php
@@ -9,9 +9,9 @@ class StatInfo
     public static $maxProc = 5;
     protected static $subProcessed = array();
 
-    public function run(){
+    public function run()
+    {
         $begin_process = $procCount = 1;
-
         //创建5个进程
         while ($procCount <= self::$maxProc) {
             $pid = pcntl_fork();   //创建进程
@@ -38,7 +38,8 @@ class StatInfo
         }
     }
   	
-	public function forkRun($start){
+	public function forkRun($start)
+	{
 		$start_set = 1;
 		while($start_set <= 5){
 			echo $start . "\n";
