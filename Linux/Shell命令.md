@@ -2,7 +2,7 @@
 
 **losf:list open files**
 
-	lsof -i：[port number]  				列出谁在使用某个端口
+	lsof -i：[port number]  				     列出谁在使用某个端口
 
 **netstat:network status** 	
 
@@ -17,20 +17,22 @@
 	head -n 行数值 filename      显示前N行
 **cat**
 
-	cat  -n filename     	 对文件中的所有行(包括空白行）并显示行号 
+	cat  -n filename     	 		对文件中的所有行(包括空白行）并显示行号 
 	cat filename | grep 目标内容 | less/more
 	cat filename | less/more  		显示文件内容
 	cat /proc/cpuinfo 	     		显示CPU info的信息
- 	cat /proc/net/dev 				显示网络适配器及统计
-	cat /proc/version 				显示内核的版本
+```shell
+cat /proc/net/dev 				显示网络适配器及统计
+cat /proc/version 				显示内核的版本
+```
 
 	free -m						 查看内存的使用情况
-	arch 					        显示机器的处理器架构
+	arch 					     显示机器的处理器架构
 
   **uname**
 
-    uname -m 				      显示机器的处理器架构
-    uname -r 				      显示正在使用的内核版本
+    uname -m 				     显示机器的处理器架构
+    uname -r 				     显示正在使用的内核版本
 **find**
 
 	find dir -name "文件夹名" -exec rm -rf {} \　     在指定目录里查找相应的文件夹并删除
@@ -58,10 +60,10 @@
 
 **ssh**
 
-	ssh  name@remoteserver					#默认端口22
-	ssh  remoteserver -l name				#默认端口22
+	ssh  name@remoteserver				#默认端口22
+	ssh  remoteserver -l name			#默认端口22
 	ssh  name@remoteserver -p 2222		#指定端口2222
-	ssh  remoteserver -l name -p 2222		#指定端口2222
+	ssh  remoteserver -l name -p 2222	#指定端口2222
 	scp  文件名 对方用户名@对方IP地址:对方路径  #拷贝文件
 
 **ps:process**
@@ -71,11 +73,13 @@
     ps aux | grep "进程名称"
 
 **tar**
-​	
-	tar.gz格式
-	tar -zcvf [目标文件名].tar.gz [原文件名/目录名]  打包并压缩
-	tar -zxvf [原文件名].tar.gz		解压并解包
 	
+```
+tar.gz格式
+tar -zcvf [目标文件名].tar.gz [原文件名/目录名]  打包并压缩
+tar -zxvf [原文件名].tar.gz		解压并解包	
+```
+
 	tar.bz2格式
 	tar -jcvf [目标文件名].tar.bz2 [原文件名/目录名]	打包并压缩
 	tar -jxvf [原文件名].tar.bz2						#解压并解包
@@ -117,12 +121,14 @@
 
 **关于时间格式的解释**
 
-	UTC	  (Universal Time Coordinated,UTC)世界协调时间
-	CST （China Standard Time UTC+8:00）中国沿海时间(北京时间)
-	GMT  (Greenwich Mean Time)格林威治标准时间
+```shell
+UTC	  (Universal Time Coordinated,UTC)世界协调时间
+CST （China Standard Time UTC+8:00）中国沿海时间(北京时间)
+GMT  (Greenwich Mean Time)格林威治标准时间
+```
 
 **当前目录下占用空间最多的5个资源**
 
-```
+```shell
 du -s * | sort -nr | sed 5q
 ```
