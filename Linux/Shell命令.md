@@ -132,3 +132,11 @@ GMT  (Greenwich Mean Time)格林威治标准时间
 ```shell
 du -s * | sort -nr | sed 5q
 ```
+**Linux后台运行程序**
+
+```shell
+一般形式: nohup name &
+输出可以重定向到一个名为nohup.out的文件中,
+也可以指定程序的输出: nohup name > save.file 2>&1 &
+```
+
