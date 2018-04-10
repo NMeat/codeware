@@ -136,8 +136,10 @@
 
 5. enable the 4.9.0 kernel by setting up the default grub2 boot entry
 
+   Show all entries in the grub2 menu:
+
    ```
-   sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
+   sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'     
    ```
 
    ```
@@ -150,7 +152,7 @@
    CentOS Linux (0-rescue-41bda1dfef7941278145d8fc0d781204) 7 (Core)
    ```
 
-6. Since the line count starts at 0 and the 4.10 kernel entry is on the second line, set the default boot entry as 0:
+6. Since the line count starts at 0 and the 4.10 kernel entry is on the first line, set the default boot entry as 0:
 
    ```
    sudo grub2-set-default 0
@@ -203,6 +205,22 @@
 
    The output will be similar to:
 
-   ```
+   ```shell
    tcp_bbr                16384  0
    ```
+
+8. 增加系统文件描述符的最大限数
+
+   ```
+   vi /etc/security/limits.conf
+   * soft nofile 51200
+   * hard nofile 51200
+
+   启动shadowsocks服务器之前，设置以下参数
+   ulimit -n 51200
+   ```
+
+   ​
+
+
+
