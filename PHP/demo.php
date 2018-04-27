@@ -25,9 +25,9 @@ function create_dir($path, $mode = 0777){
  */
 function writeFile($file,$text,$mode="w+"){
     $fop = fopen($file, $mode);
-    if(flock($fop, LOCK_EX)){ //给文件加锁
+    if(flock($fop, LOCK_EX)){ // LOCK_EX ---> 给文件加锁,取得独占锁(写入),LOCK_SH取得共享锁定（读取)
         fwrite($fop,$text);
-        flock($fop, LOCK_UN); //释放文件锁
+        flock($fop, LOCK_UN); // LOCK_UN ---> 释放文件锁
     }else{
         echo "file is locking";
     }
