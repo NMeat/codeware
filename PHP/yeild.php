@@ -3,7 +3,9 @@
 	yield 生成器函数看上去就像一个普通函数， 除了不是返回一个值之外， 
 		  生成器 类实现了生成器接口 这意味着你必须遍历方法来取值
 		  一个生成器允许你使用循环来迭代一组数据，而不需要在内存中创建是一个数组，这可能会导致你超出内存限制
-
+		  PHP 5.5开始新增了神奇的关键字yield，能够从生成器（generators）中返回数据。yield有点像普通函数中的关键字return，
+		  但是不会彻底停止函数的执行（普通函数一旦return便不执行了），可以暂停循环并返回值，每一次调用便从中断处继续迭代
+		  生成器可以用于替代循环迭代，每一次调用返回一个生成器对象（generator）
 */
 function get_one_to_three()
 {
@@ -61,4 +63,56 @@ function getValues()
 }
 $myValues = getValues(); // 在循环之前都不会有动作,特别注意此时函数并没有执行
 foreach ($myValues as $value) {} // 开始生成数据
+
+echo '华丽分界线---------------------------' . PHP_EOL;
+
+function printer() 
+{
+    while (true) {
+        $string = yield;   //向生成器中传入一个值，并且当做 yield 表达式的结果，然后继续执行生成器	
+        echo $string . PHP_EOL;
+    }
+}
+$printer = printer();
+$printer->send('Hello World');
+$printer->send('Hello yield');
+
+echo '华丽分界线---------------------------' . PHP_EOL;
+
+function nums() 
+{
+    for($i = 0; $i < 5; ++$i){
+        //get a value from the caller
+        $cmd = (yield $i);
+        if($cmd == 'stop'){
+            return;//exit the function
+        }
+    }     
+}
+
+$gen = nums();
+foreach($gen as $v)
+{
+    if($v == 3){	//we are satisfied
+        $gen->send('stop');
+    }
+    echo "{$v}\n";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
