@@ -25,6 +25,9 @@ reponse_data = urllib.request.urlopen(full_url).read().decode('UTF-8')
 
 #print(reponse_data)
 
+content = 'Hello 444 jjl Chinesejljijjl'
+result = 
+
 
 
 
