@@ -1,19 +1,5 @@
 # Shell部分
 
-**losf:list open files**
-
-	lsof -i：[port number]  列出谁在使用某个端口
-	lsof -i :3306 			查看3306端口被什么程序占用
-
-**netstat:network status** 	
-
-```shell
-netstat -tunlp | grep :3306  	  		查看某个服务是否在监听某个端口号
-netstat -an | grep ESTABLISHED | wc -l  查看并发访问数
-netstat -an | grep :3306        查看3306端口的是否已在使用中，可验证使用该端口的服务是否已正常运行
-netstat -nat| grep -i "80" | wc -l	    返回所有80端口的请求总数
-```
-
 **tail**
 
 	tail -n 行数值 filename      显示后N行
