@@ -105,3 +105,34 @@ GMT  (Greenwich Mean Time)格林威治标准时间
 也可以指定程序的输出: nohup name > save.file 2>&1 &
 ```
 
+**变更拥有者(owner)**
+
+```
+chown -R 账户名称 文件或则目录
+chown -R 账户名称:群组名称 文件或则目录
+```
+
+变更群组
+
+```
+chgrp [-options]  群组名 文档路径
+```
+
+变更权限
+
+```
+分别使用u，g，o来代表三种身份，a表示全部身份；分别使用r、w、x表示三种权限；分别使用+、-、=表示操作行为
+chmod | u g o a | +（加入） -（除去） =（设置） | r w x | 文档路径 
+//设置权限
+chmod u=rwx,g=rwx,o=rwx test === chmod ugo=rwx test === chmod a=rwx test
+//去掉权限
+chmod u-x,g-x,o-x test === chmod ugo-x test === chmod a-x test
+//添加权限
+chmod u+x,g+x,o+x test === chmod ugo+x test === chmod a+x test
+
+使用数字来代表权限，r,w,x分别为4,2,1。三种权限累加就可以得出一种身份的权限
+chmod 777 test    //设置目录test的权限为任何人都可读、写、执行
+chmod 666 test    //设置目录test的权限为任何人都可读、写。
+chmod 755 test    //赋予一个shell文件test.sh可执行权限，拥有者可读、写、执行，群组账号和其他人可读、执行。
+```
+
