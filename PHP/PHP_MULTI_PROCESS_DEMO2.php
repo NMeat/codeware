@@ -1,6 +1,3 @@
-## PHP多进程代码实例
-
-```php
 <?php
 //PHP的多进程
 class StatInfo
@@ -50,5 +47,3 @@ class StatInfo
 }
 $obj = new StatInfo();
 $obj->run();
-?>
-```
