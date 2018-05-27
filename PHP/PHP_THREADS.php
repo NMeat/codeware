@@ -3,7 +3,8 @@
 class my_thread extends Thread
 {
 	//实例父类的方法
-	function run(){
+	function run()
+	{
 		for($i = 1; $i < 10; $i++){
 			echo "此线程的ID是" . Thread::getCurrentThreadId() . "\n";
 			sleep(2);
