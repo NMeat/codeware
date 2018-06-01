@@ -65,6 +65,9 @@ tar -jxvf [原文件名].tar.bz2					解压并解包
 
 ```shell
 du -s * | sort -nr | sed 5q 当前目录下占用空间最多的5个资源
+du -sh * h指以K，M，G为单位，提高信息的可读性
+du -
+du -h --max-depth=1  指定层数
 ```
 
 **Linux terminal快捷键**
