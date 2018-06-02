@@ -8,6 +8,8 @@ main()
 	b = &a;
 	*b = 20;
 	int c = *b;
-	printf("b:%d; a:%d, c %d", b, a, c);
+	printf("b:%d; a:%d, c %d \n", b, a, c);
+
+	printf("hello world\n");
 	return 0;
 }
