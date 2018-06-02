@@ -35,7 +35,9 @@ a.c是源代码文件
 
    ```
    #define MAX 10  	//定义一个宏常量MAX 值为10
+   #define STRING "Hello world" //定义一个字符串常量
    const int a = 10;	//定义一个const常量值为10
+   
    ```
 
 2. 变量
