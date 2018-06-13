@@ -40,7 +40,6 @@ typedef double (*(*(*fp3)())[10])();
 /*
 	fp4是一个指针，这个指针指向一个包含10元素的函数指针数组，这些函数指针所指向的函数的参数为空，返回值为int
 */
-int (*(*fp4)[10])(); 
 
 int main(int argc, char const *argv[])
 {
