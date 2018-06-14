@@ -18,6 +18,8 @@ int main(int argc, char const *argv[])
 
     printf("i = %d\n", i);
     printf("*p = %d\n", *p);
+
+    
     int a = 88;
     int b = 89;
     swapA(&a, &b);
