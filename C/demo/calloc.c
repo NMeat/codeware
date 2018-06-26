@@ -33,6 +33,8 @@ int main(int argc, char const *argv[])
 	for (int s = 0; s < SIZE; ++s){
 		printf("%d\n", pl[s]);
 	}
+	free(pl);
+	pl = NULL;
 	exit(0);
 
 	int n;
