@@ -3,13 +3,11 @@
 
 int main(int argc, char const *argv[])
 {
-	int *p = (int *)malloc(sizeof(int));
+	int i;
+	scanf("%d", &i);
 
-	*p = 12;
-
-	printf("%lu\n", sizeof(p));
-
-	printf("%d\n", *p);
-	free(p);
+	double f;
+	f = i * 0.6 + 36;
+	printf("%6.1f", f);
 	return 0;
 }
