@@ -55,46 +55,55 @@
 2. 生成配置文件
 
    ```
-   echo_supervisord_conf > /etc/supervisord.conf
-   mkdir -p /var/log/supervisor
+   echo_supervisord_conf > /etc/supervisord.conf    #新建配置文件
+   supervisord -c /etc/supervisord.conf	#启动
+   supervisorctl -c /etc/supervisord.conf	#启动
+   上面这个命令会进入 supervisorctl 的 shell 界面，然后可以执行不同的命令了：
+   > status    		#查看程序状态
+   > stop usercenter   #关闭 usercenter 程序
+   > start usercenter  #启动 usercenter 程序
+   > restart usercenter    #重启 usercenter 程序
+   > reread    ＃读取有更新（增加）的配置文件，不会启动新添加的程序
+   > update    ＃重启配置文件修改过的程序
+   
+   上面这些命令都有相应的输出，除了进入 supervisorctl 的 shell 界面，也可以直接在 bash 终端运行：
+   supervisorctl status
+   supervisorctl stop usercenter
+   supervisorctl start usercenter
+   supervisorctl restart usercenter
+   supervisorctl reread
+   supervisorctl update
+   
+   mkdir -p /var/log/supervisor	#日志文件夹
+   
+   #配置目录
    mkdir -p /etc/supervisor/conf.d/
-   echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf">>/etc/supervisord.conf
+   在/etc/supervisord.conf 追加如下
+   
+   [include]
+   files = /etc/supervisor/conf.d/*.conf
    ```
 
-3. 添加相应的配置  vim /usr/lib/systemd/system/supervisord.service
+3. 进程配置
 
    ```
-   # supervisord service for systemd (CentOS 7.0+)
-   # by ET-CS (https://github.com/ET-CS)
-   [Unit]
-   Description=Supervisor daemon
-
-   [Service]
-   Type=forking
-   ExecStart=/usr/bin/supervisord
-   ExecStop=/usr/bin/supervisorctl $OPTIONS shutdown
-   ExecReload=/usr/bin/supervisorctl $OPTIONS reload
-   KillMode=process
-   Restart=on-failure
-   RestartSec=42s
-
-   [Install]
-   WantedBy=multi-user.target
+   ;进程名唯一
+   [program:ssserver]
+   command = /usr/bin/python2 /usr/bin/ssserver -c /etc/shadowsocks.json ;程序启动命令
+   autostart = true     ;自动启动  在supervisord启动的时候也自动启动
+   autoresart = true    ;自动重启	程序异常退出后自动重启
+   startsecs=10         ;程序重启检测时间	启动10秒后没有异常退出，就当作已经正常启动了
+   startretries = 3     ;启动失败自动重试次数，默认是 3
+   redirect_stderr=true ;把 stderr 重定向到 stdout，默认 false
+   user = root          ;启动用户为root
+   stderr_logfile = /var/log/supervisor/supervisorkms.log    ;记录启动错误日志
+   ;stdout日志文件，当指定目录不存在时无法正常启动，需要手动创建目录（supervisord 会自动创建日志文件）
+   stdout_logfile = /var/log/supervisor/supervisorkms.log    ;记录意外退出日志
+   stdout_logfile_maxbytes=1MB   ; stdout 日志文件大小，默认 50MB
+   stdout_logfile_backups=1      ; stdout 日志文件备份数
+   stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+   stderr_logfile_backups=1      ; # of stderr logfile backups (default 10)
    ```
-
-4. systemctl enable supervisord.service 设置开机启动服务
-
-   ```
-   supervisord 启动supervisord服务端
-   supervisorctl reload 重载supervisorctl
-   supervisorctl start shadowsocks 运行SS
-   supervisorctl stop shadowsocks 停止SS
-   supervisorctl restart shadowsocks 重启SS
-   ```
-
-
-
-
 
 ## BBR加速
 
