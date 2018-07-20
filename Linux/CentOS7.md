@@ -86,7 +86,7 @@
 
 3. 进程配置
 
-   ```
+   ```shell
    ;进程名唯一
    [program:ssserver]
    command = /usr/bin/python2 /usr/bin/ssserver -c /etc/shadowsocks.json ;程序启动命令
@@ -102,7 +102,32 @@
    stdout_logfile_maxbytes=1MB   ; stdout 日志文件大小，默认 50MB
    stdout_logfile_backups=1      ; stdout 日志文件备份数
    stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
-   stderr_logfile_backups=1      ; # of stderr logfile backups (default 10)
+   stderr_logfile_backups=1      ; # of stderr logfile backups (default 10)	
+   ```
+
+4. 将supervisor加入开机自启动
+
+   ```
+   cd /usr/lib/systemd/system/
+   vim supervisor.service 加入以下内容
+   ------------分界线--------------
+   [Unit]
+   Description=supervisor
+   After=network.target
+   
+   [Service]
+   Type=forking
+   ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf
+   ExecReload=/usr/bin/supervisorctl reread
+   ExecStop=/usr/bin/supervisorctl stop all
+   PrivateTmp=true
+   
+   [Install]
+   WantedBy=multi-user.target
+   ------------分界线--------------
+   
+   systemctl enable supervisor.service  //设置链接
+   systemctl start supervisor.service	 //开启
    ```
 
 ## BBR加速
