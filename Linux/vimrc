@@ -1,0 +1,74 @@
+"缩进
+set autoindent      "设置自动缩进
+set smartindent     "设置智能缩进
+
+"显示输入的命令
+set showcmd
+
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+
+" 设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+
+"启动时隐去援助提示
+set shortmess=atI
+
+"高亮查找匹配
+set hlsearch
+
+"显示匹配
+set showmatch
+
+"没有保存或文件只读时弹出确认
+set confirm
+
+"文件自动检测外部更改
+set autoread
+
+"不需要备份
+set nobackup
+
+" 行控制
+set linebreak   "英文单词在换行时不被截断
+set nocompatible"设置不兼容VI
+set textwidth=80"设置每行80个字符自动换行，加上换行符
+set wrap        "设置自动折行
+
+" tab转化为4个字符
+set tabstop=4
+set expandtab
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+
+"显示行号
+set nu
+
+"显示标尺，就是在右下角显示光标位置
+set ruler
+
+"编码设置
+set encoding=utf-8
+
+"允许用退格键删除字符
+set backspace=indent,eol,start
+
+syntax on
+" 配色方案
+set background=dark
+colorscheme solarized
+
+" 总是显示状态栏
+set laststatus=2
+
+"设置键盘映射，通过空格设置折叠
+nnoremap <space> @=((foldclosed(line('.')<0)?'zc':'zo'))<CR>
+""""""""""""""""""""""""""""""""""""""""""""""
+
+"浅色显示当前行
+autocmd InsertLeave * se nocul
+
+"用浅色高亮当前行
+autocmd InsertEnter * se cul
