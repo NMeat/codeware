@@ -28,30 +28,29 @@ input quit to exit
 EOD;
  
 while (true) {
- 
-        $prompt = "\n{$user}$ ";
-        $input  = readline($prompt);
- 
-        readline_add_history($input);
-        if ($input == 'quit') {
-               break;
-          }
-        process_execute($input . ';');
+    $prompt = "\n{$user}$ ";
+    $input  = readline($prompt);
+
+    readline_add_history($input);
+    if ($input == 'quit') {
+           break;
+      }
+    process_execute($input . ';');
 }
  
 exit(0);
  
 function process_execute($input) {
-        $pid = pcntl_fork(); //创建子进程
-        if ($pid == 0) {//子进程
-                $pid = posix_getpid();
-                echo "* Process {$pid} was created, and Executed:\n\n";
-                eval($input); //解析命令
-                exit;
-        } else {//主进程
-                $pid = pcntl_wait($status, WUNTRACED); //取得子进程结束状态
-                if (pcntl_wifexited($status)) {
-                        echo "\n\n* Sub process: {$pid} exited with {$status}";
-                }
+    $pid = pcntl_fork(); //创建子进程
+    if ($pid == 0) {//子进程
+        $pid = posix_getpid();
+        echo "* Process {$pid} was created, and Executed:\n\n";
+        eval($input); //解析命令
+        exit;
+    } else {//主进程
+        $pid = pcntl_wait($status, WUNTRACED); //取得子进程结束状态
+        if (pcntl_wifexited($status)) {
+                echo "\n\n* Sub process: {$pid} exited with {$status}";
         }
+    }
 }
