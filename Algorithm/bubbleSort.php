@@ -1,26 +1,16 @@
 <?php
 /**
- * 比较相邻两个元素的大小 如果第一个比第二个大就交换两个元素的位置
- * 冒泡排序
+ * @param $arr
+ * @return mixed
  */
-function bubbleSort($arr){
-    for($i = 0,$len = count($arr);$i < $len; $i++){
-        for($j = 1;$j < $len -$i; $j++ ){
-            if($arr[$j - 1] > $arr[$j]){
-                $temp = $arr[$j - 1];
-                $arr[$j - 1] = $arr[$j];
-                $arr[$j] = $temp;
-            }
-        }
-    }
-    return $arr;
-}
-
-//从大到小排列数组
-function getSort($arr){
+function bubbleSort($arr)
+{
+    //第一层for循环可以理解为从数组中键为0开始循环到最后一个
     for($i = 0, $len = count($arr); $i < $len; $i++){
+        // 第二层将从键为$i的地方循环到数组最后
         for($j = $i + 1; $j < $len; $j++){
-            if($arr[$i] < $arr[$j]){
+            //比较数组中相邻两个值的大小  只要修改一个比较符号就可以反向操作
+            if($arr[$i] > $arr[$j]){
                 $tmp = $arr[$i];
                 $arr[$i] = $arr[$j];
                 $arr[$j] = $tmp;
@@ -31,8 +21,6 @@ function getSort($arr){
 }
 
 $arr = array(10,3,90,45,33,22,111);
-print_r(getSort($arr));
-echo "<br>";
 print_r(bubbleSort($arr));
 echo "<br>";
 print_r($arr);

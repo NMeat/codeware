@@ -1,8 +1,12 @@
 <?php
 //快速排序
-function quickSort($arr){
-	$len = count($arr);
-	if(count($arr) <= 1) return $arr;
+function quickSort($arr)
+{
+
+	if (!is_array($arr) || $len = count($arr) <= 1) {
+        return $arr;
+    }
+    echo $len;die;
 	$first = $arr[0];
 	$left = $right = array();
 	for($i = 1; $i < $len; $i++){
