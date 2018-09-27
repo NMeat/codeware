@@ -11,7 +11,8 @@
 */
 
 //UserInfo类
-class UserInfo {  
+class UserInfo
+{
     public $userInfo = array();             //用户信息数组
 
     public function addUser($userInfo) {    //添加用户信息
@@ -33,9 +34,9 @@ class UserInfoDecorate {
       
 }  
   
-$UserInfo = new UserInfo;           //实例化一个类
+$UserInfo = new UserInfo;                   //实例化一个类
 $UserInfo->addUser('zhu');          //添加用户信息
 $UserInfo->addUser('initphp');  
-$UserInfoDecorate = new UserInfoDecorate;  
-$UserInfoDecorate->makeCaps($UserInfo);  //修改用户信息
+$UserInfoDecorate = new UserInfoDecorate();
+$UserInfoDecorate->makeCaps($UserInfo);     //修改用户信息
 $UserInfo->getUserList();  

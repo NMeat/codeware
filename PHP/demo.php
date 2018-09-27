@@ -44,12 +44,10 @@ function getExt($url){
     $arr = parse_url($url);
     //获取文件名
     $file = basename($arr["path"]);
-    //用点号分割字符串
+    //用点号分割字符串成数组
     $ext  = explode(".", $file);
     return $ext[count($ext) - 1];    
 }
-//$url = "http://www.baidu.com/aa/bb/cc.php?aa=dd&&cc=dd#dfa";
-//echo getExt($url);
 
 /**
  *取出一个目录下的所有文件和子文件
@@ -75,8 +73,6 @@ function my_scandir($dir){
         return $files;
     }
 }
-//$dir = "/home/lzf/github/alpha/java";
-//print_r(my_scandir($dir));
 
 /**
  * 判断一个字符串是否是合法的日期格式:2015-04-04 12:34:54

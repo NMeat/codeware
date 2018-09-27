@@ -2,12 +2,21 @@
 //快速排序
 function quickSort($arr)
 {
+<<<<<<< HEAD
     $len = count($arr);
 	if (!is_array($arr) || $len <= 1) {
         return $arr;
     }
 
 	$first = $arr[0];  //第一个元素做比较值
+=======
+
+	if (!is_array($arr) || $len = count($arr) <= 1) {
+        return $arr;
+    }
+    echo $len;die;
+	$first = $arr[0];
+>>>>>>> c83b365a2fc2fb10c71fc663dcd8c6fcc9132845
 	$left = $right = array();
 	for ($i = 1; $i < $len; $i++) {
 		if ($arr[$i] < $first) {
