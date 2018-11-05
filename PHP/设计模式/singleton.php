@@ -13,28 +13,34 @@ class Man
 {
     //被重载的数据保存在此
     private $data = array();
+
     //保存实例到此属性中
     private static $_instance;
+
     //构造函数声明为prvate 防止直接创建对象
     private function __construct(){}
 
-    public static function getInstance(){
+    public static function getInstance()
+    {
         if(!isset(self::$_instance)){
             self::$_instance = new self();
         }
         return self::$_instance;
     }
 
-    private function __clone(){
+    private function __clone()
+    {
         trigger_error("clone is not allow", E_USER_NOTICE);
     }
 
-    public function __set($name, $value){
+    public function __set($name, $value)
+    {
         $this->data[$name] = $value;
     }
 
-    public function __get($name){
-        if(array_key_exists($name, $this->data)){
+    public function __get($name)
+    {
+        if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
         $trace = debug_backtrace();
@@ -48,10 +54,7 @@ class Man
 
 $testMan = Man::getInstance();
 $testMan->name = 'I am test data';
-
 echo $testMan->name . PHP_EOL;
-
 unset($testMan);  //unset 后对象里的数据依然在保留
-
 $_testMan = Man::getInstance();
 echo $_testMan->name;
