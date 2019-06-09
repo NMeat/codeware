@@ -1,0 +1,54 @@
+<!DOCTYPE html><!--当前网页的类型-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>我是网页的标题</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>我是<font color="green">color</font>一个demo网页</h1>
+        <div class="box1 container" id="box1">
+            <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML</p>
+            <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML</p>
+            <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML</p>
+            <p>层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML</p>
+        </div>
+        <div class="box2 container" id="box2">
+            <h1>是一种用来表现HTML（标准通用标记语言的一个应用</h1>
+            <p id="p2">
+                层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化
+            </p>
+        </div>
+        <div id="app">
+            <p v-cloak>{{msg}}</p>
+            <h1 v-text="msg"></h1>
+            <h1 v-html="msg2"></h1>
+            <input type="button" value='按扭' v-bind:title="myTitle" v-on:click="show"/>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data:{
+                    msg:'欢迎学习Vue',
+                    msg2:'<font>欢迎学习Vue</font>',
+                    myTitle:'我是一个自定义的按扭'
+                },
+                methods:{
+                    show:function(){
+                        alert('hello world');
+                    }
+                },
+                created:function () {
+                    console.log('msg = ' + this.msg);
+                }
+            });
+        </script>
+    </body>
+</html>
