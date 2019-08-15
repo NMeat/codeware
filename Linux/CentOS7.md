@@ -46,7 +46,7 @@
    less /var/log/shadowsocks.log
    ```
 
-   ​
+   
 
 ## 安装supervisor来监测shadowsocks服务
 
@@ -155,92 +155,22 @@
 4. 确认安装结果
 
    ```
-   rpm -qa | grep kernel
-   If the installation is successful, you should see kernel-ml-4.9.0-1.el7.elrepo.x86_64 among the output list:
+   # 查看安装内核并设置，从返回结果中找到版本号最大的一行的序号，设置为默认启动
+   awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
+   # 0是版本号最大的一行的序号
+   grub2-set-default 0
    ```
 
-   ```
-   kernel-tools-libs-3.10.0-514.16.1.el7.x86_64
-   kernel-3.10.0-514.el7.x86_64
-   kernel-3.10.0-514.10.2.el7.x86_64
-   kernel-tools-3.10.0-514.16.1.el7.x86_64
-   kernel-3.10.0-514.16.1.el7.x86_64
-   kernel-ml-4.10.13-1.el7.elrepo.x86_64  #目前是4.10
-   ```
-
-5. enable the 4.9.0 kernel by setting up the default grub2 boot entry
-
-   Show all entries in the grub2 menu:
+5. enable bbr
 
    ```
-   sudo egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'     
-   ```
-
-   ```
-   显示如下:
-   CentOS Linux (4.10.13-1.el7.elrepo.x86_64) 7 (Core)
-   CentOS Linux 7 Rescue d8a77e850a4d412fad892befce9bd9c8 (3.10.0-514.16.1.el7.x86_64)
-   CentOS Linux (3.10.0-514.16.1.el7.x86_64) 7 (Core)
-   CentOS Linux (3.10.0-514.10.2.el7.x86_64) 7 (Core)
-   CentOS Linux (3.10.0-514.el7.x86_64) 7 (Core)
-   CentOS Linux (0-rescue-41bda1dfef7941278145d8fc0d781204) 7 (Core)
-   ```
-
-6. Since the line count starts at 0 and the 4.10 kernel entry is on the first line, set the default boot entry as 0:
-
-   ```
-   sudo grub2-set-default 0
-   sudo shutdown -r now
-   uname -r
-   ```
-
-   ```
-   显示如下:
-   4.10.13-1.el7.elrepo.x86_64
-   ```
-
-7. enable bbr
-
-   ```
-   echo 'net.core.default_qdisc=fq' | sudo tee -a /etc/sysctl.conf
-   echo 'net.ipv4.tcp_congestion_control=bbr' | sudo tee -a /etc/sysctl.conf
-   sudo sysctl -p
-   ```
-
-   Now, you can use the following commands to confirm that BBR is enabled:
-
-   ```
-   sudo sysctl net.ipv4.tcp_available_congestion_control
-   ```
-
-   The output should resemble:
-
-   ```
-   net.ipv4.tcp_available_congestion_control = bbr cubic reno
-   ```
-
-   Next, verify with:
-
-   ```
-   sudo sysctl -n net.ipv4.tcp_congestion_control
-   ```
-
-   The output should be:
-
-   ```
-   bbr
-   ```
-
-   Finally, check that the kernel module was loaded:
-
-   ```
+   # 开启BBR
+   echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+   echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+   # 保存并生效
+   sysctl -p 
+   # 查看是否开启。返回值有 tcp_bbr 模块即说明 bbr 已启动。
    lsmod | grep bbr
-   ```
-
-   The output will be similar to:
-
-   ```shell
-   tcp_bbr                16384  0
    ```
 
 8. 增加系统文件描述符的最大限数
@@ -254,7 +184,41 @@
    ulimit -n 51200
    ```
 
-   ​
 
 
+
+## 新VPS初始化常用步骤
+
+1.新建 work组 work用户
+
+```
+groupadd work
+useradd -g work work
+passwd work
+```
+
+2.免密登录
+
+```
+mkdir -p ~/.ssh
+chmod -R 700 ~/.ssh  
+touch  ~/.ssh/authorized_keys
+chmod -R 600 ~/.ssh/authorized_keys
+
+将登录用的公用证书复制进~/.ssh/authorized_keys
+
+#root修改sshd配文件
+vim /etc/ssh/sshd_config
+
+#禁用root账户登录
+PermitRootLogin no
+RSAAuthentication yes
+PubkeyAuthentication yes  
+AuthorizedKeysFile .ssh/authorized_keys
+#有了证书登录了，就禁用密码登录吧，安全要紧  
+PasswordAuthentication no
+
+#重启服务
+systemctl start sshd.service
+```
 
