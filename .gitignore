@@ -1,2 +1,3 @@
 *.DS_Store
 Go/pkg/
+.vscode/
