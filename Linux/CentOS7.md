@@ -189,17 +189,14 @@
 
 ## 新VPS初始化常用步骤
 
-1.新建 work组 work用户
+1.免密登录 ----- 新建 work组 work用户
 
 ```
 groupadd work
 useradd -g work work
 passwd work
-```
 
-2.免密登录
-
-```
+在work家目录
 mkdir -p ~/.ssh
 chmod -R 700 ~/.ssh  
 touch  ~/.ssh/authorized_keys
@@ -207,10 +204,10 @@ chmod -R 600 ~/.ssh/authorized_keys
 
 将登录用的公用证书复制进~/.ssh/authorized_keys
 
-#root修改sshd配文件
+root修改sshd配文件
 vim /etc/ssh/sshd_config
 
-#禁用root账户登录
+禁用root账户登录
 PermitRootLogin no
 RSAAuthentication yes
 PubkeyAuthentication yes  
@@ -218,7 +215,37 @@ AuthorizedKeysFile .ssh/authorized_keys
 #有了证书登录了，就禁用密码登录吧，安全要紧  
 PasswordAuthentication no
 
-#重启服务
+重启服务
 systemctl start sshd.service
+
+```
+
+2.安装SSL证书
+
+```
+yum -y install epel-release
+yum -y install certbot
+
+将example.com替换成你的域名
+certbot certonly --standalone -d example.com
+
+如果申请成功，证书和私钥路径如下
+/etc/letsencrypt/live/example.com/fullchain.pem
+/etc/letsencrypt/live/example.com/privkey.pem
+
+显示证书信息
+certbot certificates   
+
+撤销证书
+certbot revoke --cert-path /etc/letsencrypt/live/CERTNAME/cert.pem 
+
+删除证书（撤销之后使用
+certbot delete --cert-name example.com
+
+crontab -e 增加两条定时任务
+每月的 1,7,21,28号， 4点30 更新证书
+30 4 1,7,21,28 * * /usr/bin/certbot renew
+每月的 1,7,21,28号， 5点30 重新启动nginx 服务器
+30 5 1,7,21,28 * * /usr/sbin/nginx -t && killall  nginx  && /usr/sbin/nginx
 ```
 
