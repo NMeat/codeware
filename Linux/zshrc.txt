@@ -1,0 +1,5 @@
+显示当前日期和时间、时区、星期几 alias now="date +'%Y-%m-%d %X %z %A'"
+显示当前时间戳 alias nowts='date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s"'
+将时间戳转换为本地时间 alias tsdate='new() { date -r "$1" +"%Y-%m-%d %X %z %A" }; new' 例如:tsdate 1569898863
+将本地时间转换为时间戳 alias datets='new() { date -j -f "%Y-%m-%d %X" "$1" "+%s" }; new' 例如:datets “2019-10-01 11:01:03”
+将指定时区的时间转换为时间戳 alias datezts='new() { date -j -f "%Y-%m-%d %X %z" "$1" "+%s" }; new'

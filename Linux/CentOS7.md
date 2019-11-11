@@ -196,13 +196,16 @@ groupadd work
 useradd -g work work
 passwd work
 
-在work家目录
+切换到work家目录
+su work
 mkdir -p ~/.ssh
 chmod -R 700 ~/.ssh  
 touch  ~/.ssh/authorized_keys
-chmod -R 600 ~/.ssh/authorized_keys
 
-将登录用的公用证书复制进~/.ssh/authorized_keys
+将登录用的公用证书复制进,尽量用scp上传公钥,vim复制会出现迷之登录不上的bug
+把公钥id_rsa.pub传到服务器上:scp ~/.ssh/id_rsa.pub  work@远程服务器IP:~/
+把公钥追加到authorized_keys里:cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
+更改授权:chmod -R 600 ~/.ssh/authorized_keys
 
 root修改sshd配文件
 vim /etc/ssh/sshd_config
@@ -216,8 +219,7 @@ AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication no
 
 重启服务
-systemctl start sshd.service
-
+systemctl restart sshd.service
 ```
 
 2.安装SSL证书
