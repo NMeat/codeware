@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // ES5的类定义方法
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        Point.prototype.toString = function () {
+            // 字符串模块语法
+            return `( ${this.x}, ${this.y} )`;
+        }
+
+        let p = new Point(1, 4);
+        console.log(p.toString());
+
+        // ES6的类定义方法
+        class PointEs6 {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            toString() {
+                return `( ${this.x}, ${this.y} )`;
+            }
+        }
+
+        let p2 = new PointEs6(1, 4);
+        console.log(p2.toString());
+    </script>
+</body>
+</html>
