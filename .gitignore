@@ -2,3 +2,4 @@
 Go/pkg/
 .vscode/
 node_demo/node_modules/
+node_demo/webpack_demo/node_modules/
