@@ -1,12 +1,12 @@
-import _ from 'lodash';
-import $ from 'jquery';   //这是ES6引入模块的方式
-// const $ = require('jquery'); // 下面是Node.js引入模块的方式
-
-$(function () {
-    $('li:odd').css('backgroundColor', 'red');
-    $('li:even').css('backgroundColor', function(){
-        return '#D97634';
-    });
-})
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
+import App from './components/App.vue';
 
 
+Vue.use(ElementUI);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
