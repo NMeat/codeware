@@ -1,6 +1,5 @@
 *.DS_Store
 .vscode/
 Go/pkg/
-Go/src/github.com/
 node_demo/node_modules/
 node_demo/webpack_demo/node_modules/
