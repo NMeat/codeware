@@ -40,6 +40,15 @@ type SliceStruct struct {
 }
 
 func main() {
+	nums := []int{2, 3, 4}
+	sum := 0
+	for i, num := range nums {
+		sum += num
+		fmt.Println(i)
+	}
+
+	fmt.Println(sum)
+
 	// fmt.Println("hello world go")
 	// var a = 18
 	// var b = 12
@@ -109,14 +118,34 @@ func main() {
 	// 	<-chann
 	// }
 
-	var p Person = Student{20, "Elon", 78.89}
-	fmt.Println("This person name is", p.GetName())
-	fmt.Println("This person age is", p.GetAge())
-	fmt.Println("This person score is", p.GetScore())
+	// var p Person = Student{20, "Elon", 78.89}
+	// fmt.Println("This person name is", p.GetName())
+	// fmt.Println("This person age is", p.GetAge())
+	// fmt.Println("This person score is", p.GetScore())
 
-	var c Car = Student{1, "BMW", 78.56}
-	fmt.Println("This car name is", c.GetName())
-	fmt.Println("This car age is", c.GetAge())
+	// var c Car = Student{1, "BMW", 78.56}
+	// fmt.Println("This car name is", c.GetName())
+	// fmt.Println("This car age is", c.GetAge())
+
+	// var i interface{} = 10
+	// t1 := i.(int)
+	// fmt.Println(t1)
+
+	// c1 := make(chan string, 1)
+	// c2 := make(chan string, 1)
+
+	// c2 <- "hello"
+	// c1 <- "world"
+
+	// // 在运行 select 时，会遍历所有（如果有机会的话）的 case 表达式，只要有一个信道有接收到数据，那么 select 就结束，所以输出如下
+	// select {
+	// case msg1 := <-c1:
+	// 	fmt.Println("c1 received: ", msg1)
+	// case msg2 := <-c2:
+	// 	fmt.Println("c2 received: ", msg2)
+	// default:
+	// 	fmt.Println("No data received.")
+	// }
 }
 
 // func Go(chann chan int, index int) {
@@ -128,16 +157,16 @@ func main() {
 // 	chann <- index
 // }
 
-type Person interface {
-	GetAge() int
-	GetName() string
-	GetScore() float32
-}
+// type Person interface {
+// 	GetAge() int
+// 	GetName() string
+// 	GetScore() float32
+// }
 
-type Car interface {
-	GetAge() int
-	GetName() string
-}
+// type Car interface {
+// 	GetAge() int
+// 	GetName() string
+// }
 
 type Student struct {
 	age   int
