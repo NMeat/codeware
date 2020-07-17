@@ -57,4 +57,9 @@ func main() {
 	fmt.Println(reflect.TypeOf(intList))    // []int
 	fmt.Println(reflect.TypeOf(float8List)) // []float64
 	fmt.Println(reflect.TypeOf(stringList)) // []string
+
+	// 遍历数组
+	for i := 0; i < len(intList); i++ {
+		fmt.Println(intList[i])
+	}
 }
