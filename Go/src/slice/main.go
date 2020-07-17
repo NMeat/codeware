@@ -42,11 +42,11 @@ func main() {
 	fmt.Println(slice2[3:])  // [4 5 6]
 
 	// 遍历切片 两种办法
-	// for i := 0; i < len(slice2); i++ {
-	// 	fmt.Println(slice2[i])
-	// }
+	for i := 0; i < len(slice2); i++ {
+		fmt.Println(slice2[i])
+	}
 
-	// for k, v := range slice2 {
-	// 	fmt.Println(k, v)
-	// }
+	for k, v := range slice2 {
+		fmt.Println(k, v)
+	}
 }
