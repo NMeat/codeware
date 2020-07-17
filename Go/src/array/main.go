@@ -10,14 +10,25 @@ import (
 func main() {
 	// 初始化数组
 	var balance [3]float32
-	// balance = [1000.0, 2.0, 3.4, 7.0, 50.0]
 	balance[0] = 7.8
 	balance[1] = 7.8
 	balance[2] = 7.8
-	fmt.Println(balance)
+	fmt.Println(balance) //[7.8 7.8 7.8]
 
 	var balance2 = [5]int{1, 2, 3, 4, 5}
-	fmt.Println(balance2)
+	fmt.Println(balance2) //[1 2 3 4 5]
+
+	var balance3 = [...]int{1, 2, 3, 4, 5, 6, 7, 8}
+	fmt.Println(balance3) //[1 2 3 4 5 6 7 8]
+
+	// 指定索引的值
+	var balance4 = [5]int{2: 1, 3: 2, 4: 3}
+	fmt.Println(balance4) //[0 0 1 2 3]
+
+	// 二级数组
+	var balance5 = [5][2]int{{1, 2}, {2, 3}}
+	fmt.Println(balance5)       //[[1 2] [2 3] [0 0] [0 0] [0 0]]
+	fmt.Println(balance5[0][1]) // 2
 
 	intList := []int{2, 4, 3, 5, 7, 6, 9, 8, 1, 0}
 	float8List := []float64{4.2, 5.9, 12.3, 10.0, 50.4, 99.9, 31.4, 27.81828, 3.14}
