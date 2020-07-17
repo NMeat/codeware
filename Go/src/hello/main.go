@@ -39,15 +39,44 @@ type SliceStruct struct {
 	value []int
 }
 
-func main() {
-	nums := []int{2, 3, 4}
-	sum := 0
-	for i, num := range nums {
-		sum += num
-		fmt.Println(i)
-	}
+type Sort interface {
+	BubbleSort() []int
+}
 
-	fmt.Println(sum)
+type ArrayObj struct {
+	Array []int
+}
+
+func (array ArrayObj) BubbleSort() []int {
+	// 验证数组是否为空
+	if len(array.Array) == 0 {
+		fmt.Println("array is empty")
+	}
+	var i, j, length int
+	length = len(array.Array)
+	for i = 0; i < length; i++ {
+		for j = 1; j < length-i; j++ {
+			if array.Array[j] < array.Array[j-1] {
+				array.Array[j], array.Array[j-1] = array.Array[j-1], array.Array[j]
+			}
+		}
+	}
+	fmt.Println(array.Array)
+	return array.Array
+}
+
+func main() {
+	var arr ArrayObj
+	arr.Array = []int{19, 32, 23, 4, 89, 338, 7, 8, 9, 108}
+	arr.BubbleSort()
+	// nums := []int{2, 3, 4}
+	// sum := 0
+	// for i, num := range nums {
+	// 	sum += num
+	// 	fmt.Println(i)
+	// }
+
+	// fmt.Println(sum)
 
 	// fmt.Println("hello world go")
 	// var a = 18
