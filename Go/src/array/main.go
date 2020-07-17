@@ -30,7 +30,7 @@ func main() {
 	var balance4 = [5]int{2: 1, 3: 2, 4: 3}
 	fmt.Println(balance4) //[0 0 1 2 3]
 
-	// 二级数组
+	// 二维数组
 	var balance5 = [5][2]int{{1, 2}, {2, 3}}
 	fmt.Println(balance5)       //[[1 2] [2 3] [0 0] [0 0] [0 0]]
 	fmt.Println(balance5[0][1]) // 2
