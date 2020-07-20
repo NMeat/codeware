@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"reflect"
+)
+
 /*
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
@@ -29,7 +34,8 @@ func maxArea(height []int) int {
 }
 
 func main() {
-	var arrs = []int{6, 7, 8, 2, 4, 7, 4}
+	arrs := []int{6, 7, 8, 2, 4, 7, 4}
 
-	println(maxArea(arrs))
+	fmt.Println(reflect.TypeOf(arrs)) // []int
+	println(maxArea(arrs))            // 30
 }
