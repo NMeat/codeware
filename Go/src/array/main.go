@@ -62,4 +62,12 @@ func main() {
 	for i := 0; i < len(intList); i++ {
 		fmt.Println(intList[i])
 	}
+
+	for k, v := range intList {
+		println(k, v)
+	}
+
+	for _, v := range intList {
+		println(v)
+	}
 }
