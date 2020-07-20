@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 /*
 Example 1:
@@ -27,7 +30,7 @@ func Reverse(x int) int {
 	for x != 0 {
 		tmp = tmp*10 + x%10
 		x = x / 10
-		println(tmp, x)
+		fmt.Println(tmp, x)
 	}
 
 	if tmp > 1<<31-1 || tmp < -(1<<31) {
@@ -38,8 +41,8 @@ func Reverse(x int) int {
 }
 
 func main() {
-	println(Reverse(657)) // 756
+	fmt.Println(Reverse(657)) // 756
 	os.Exit(0)
-	println(Reverse(656))  // 656
-	println(Reverse(-780)) // -87
+	fmt.Println(Reverse(656))  // 656
+	fmt.Println(Reverse(-780)) // -87
 }
