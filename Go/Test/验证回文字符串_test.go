@@ -29,7 +29,7 @@ func Test1(t *testing.T) {
 			fmt.Println("不是回文字符串")
 		}
 	}
-
+	fmt.Println(7 / 2)
 	fmt.Println("是回文字符串")
 	fmt.Println(sgood)
 }
